@@ -1,0 +1,33 @@
+{
+  "home": "",
+  "server": {
+    "port": 8992,
+    "addr": "127.0.0.1",
+    "charset": "UTF-8"
+  },
+  "database": {
+    "user": "mysql",
+    "password": "",
+    "host": "",
+    "port": 3306,
+    "schema": ""
+  },
+  "view": {
+    "static": {
+      "path": "",
+      "url": ""
+    },
+    "template": {
+      "path": "",
+      "layout": "layout.html",
+      "ext": "html",
+      "reload": true
+    }
+  },
+  "log": {
+    "file": "",
+    "rotateType": "",
+    "rotateValue": "",
+    "rotateCount": ""
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "home": "/Users/Crazz/WorkSpace/GOWork/levante/",
+  "server": {
+    "port": 8992,
+    "addr": "127.0.0.1",
+    "charset": "UTF-8"
+  },
+  "database": {
+    "user": "levante",
+    "password": "maserati",
+    "host": "127.0.0.1",
+    "port": 3306,
+    "schema": "levante"
+  },
+  "view": {
+    "static": {
+      "path": "assets/statics/",
+      "uri": "/statics"
+    },
+    "template": {
+      "path": "assets/views/",
+      "layout": "layout.html",
+      "ext": ".html",
+      "reload": true
+    }
+  },
+  "log": {
+    "file": "logs/levante.log",
+    "rotateType": "TIME",
+    "rotateValue": "60*60*24",
+    "rotateCount": "7"
+  }
+}

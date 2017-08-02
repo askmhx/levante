@@ -1,0 +1,7 @@
+package util
+
+const CONST_APP_DB = "APPLICATION_CONST_DATABASE"
+const CONST_APP_CONFIG = "APPLICATION_CONST_APPCONFIG"
+
+const CONST_PARAM_PAGE_INDEX = "page_index"
+const CONST_PARAM_PAGE_SIZE = "page_size"
