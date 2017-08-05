@@ -1,3 +1,32 @@
+{{ define "head"}}
+<link href="/statics/css/start.css" rel="stylesheet">
+{{ end }}
+
 <div class="container">
-    <h1>start2233</h1>
+    <div id="search_content">
+        <form class="search_form" id="queryForm" action="http://www.google.com/search" target="_blank">
+            <input accesskey="s" id="kw" type="text" name="q" placeholder="输入关键词" onkeydown="submitForm(e)"/>
+            <input class="search_btn" type="button" onclick="subForm(1)" value="Google"/>
+            <input class="search_btn" type="button" onclick="subForm(2)" value="Baidu"/>
+            <input class="search_btn" type="button" onclick="subForm(3)" value="Bing"/>
+        </form>
+    </div>
+    <div class="clearfix"></div>
+    <div class="link_table">
+        {{ range .linkGroups }}
+        <div class="link_table_row">
+            <div class="link_table_row_header">
+                <p>{{ .linkGroup.title }}</p>
+            </div>
+            <ul>
+                {{ range .link .linkGroup.Links }}
+                <li><a target="_blank" title="Owner:{{ .link.owner }},About:{{ .link.description }}" {{ if .link.highlight }} class="init" {{ end }} href="{{ .link.url }}">{{ .link.title }}</a></li>
+                {{ end }}
+            </ul>
+            <div class="clearfix"></div>
+        </div>
+        {{ end }}
+    </div>
+    <script charset="gbk" src="http://www.baidu.com/js/opensug.js"></script>
+    <script charset="gbk" src="/statics/js/start.js"></script>
 </div>
