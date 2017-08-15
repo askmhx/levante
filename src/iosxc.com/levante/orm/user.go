@@ -1,12 +1,10 @@
 package orm
 
 import (
-	"github.com/jinzhu/gorm"
 	"time"
 )
 
 type User struct {
-	gorm.Model
 	OprBaseModel
 	Email         string
 	UserName      string

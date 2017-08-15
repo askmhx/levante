@@ -6,46 +6,49 @@
     <meta name="description" content="就是一个乱七八糟的博客">
     <meta name="author" content="">
     <title>ALL IN IT!</title>
-    <link href="/statics/vendor/bs4/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/statics/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/statics/vendor/bootstrap/css/bootstrap-grid.css" rel="stylesheet">
+    <link href="/statics/vendor/bootstrap/css/bootstrap-reboot.css" rel="stylesheet">
     <link href="/statics/css/blog.css" rel="stylesheet">
     {{ template "head" . }}
 </head>
 <body>
-<nav class="navbar navbar-toggleable-md navbar-inverse fixed-top bg-inverse">
-    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
-            data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false"
-            aria-label="Toggle navigation">
+<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+    <a class="navbar-brand" href="#">&nbsp;&nbsp;博&nbsp;&nbsp;客&nbsp;&nbsp;</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
+            aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
-    <a class="navbar-brand" href="#">&nbsp;&nbsp;博&nbsp;&nbsp;客&nbsp;&nbsp;</a>
+
     <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-        <ul class="navbar-nav">
-            <li class='nav-item {{ if eq .navIndexKey "index" }}active{{ end }}'>
-                <a class="nav-link" href="/">Home</a>
-            </li>
-            <li class='nav-item {{ if eq .navIndexKey "archive" }}active{{ end }}'>
-                <a class="nav-link" href="/archive">Archives</a>
-            </li>
-            <li class='nav-item {{ if eq .navIndexKey "start" }}active{{ end }}'>
-                <a class="nav-link" href="/start">Sites</a>
-            </li>
-            <li class='nav-item {{ if eq .navIndexKey "about" }}active{{ end }}'>
-                <a class="nav-link" href="/about">About</a>
-            </li>
-        </ul>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav">
+                <li class='nav-item {{ if eq .navIndexKey "index" }}active{{ end }}'>
+                    <a class="nav-link" href="/">Home</a>
+                </li>
+                <li class='nav-item {{ if eq .navIndexKey "archive" }}active{{ end }}'>
+                    <a class="nav-link" href="/archive">Archives</a>
+                </li>
+                <li class='nav-item {{ if eq .navIndexKey "start" }}active{{ end }}'>
+                    <a class="nav-link" href="/start">Sites</a>
+                </li>
+                <li class='nav-item {{ if eq .navIndexKey "about" }}active{{ end }}'>
+                    <a class="nav-link" href="/about">About</a>
+                </li>
+            </ul>
+        </div>
     </div>
 </nav>
-
-{{ yield }}
-<hr>
-<footer class="footer">
-    <div class="container">
-        <span class="text-muted">Copyright &copy; BLOG.IOSXC.COM 2017</span>
-    </div>
-</footer>
-<script src="/statics/vendor/jquery/jquery.min.js"></script>
-<script src="/statics/vendor/tether/tether.min.js"></script>
-<script src="/statics/vendor/bs4/js/bootstrap.min.js"></script>
-<script src="/statics/js/ie10-viewport-bug-workaround.js"></script>
+<div class="container">
+    {{ yield }}
+    <footer>
+        <hr>
+        <p>&copy; BLOG.IOSXC.COM 2017</p>
+    </footer>
+</div>
+<script src="/statics/vendor/jquery/jquery-3.2.1.slim.min.js"></script>
+<script src="/statics/vendor/popper/popper.min.js"></script>
+<script src="/statics/vendor/bootstrap/js/bootstrap.min.js"></script>
+<script src="/statics/vendor/ie10/ie10-viewport-bug-workaround.js"></script>
 </body>
 </html>

@@ -33,9 +33,18 @@ func (this *IndexCtrl) ArchiveHandle(context context.Context) {
 
 func (this *IndexCtrl) StartHandle(context context.Context) {
 	context.ViewData(nav_index_key, nav_page_start)
-	var links []orm.Link
-	this.DB.Select(&links)
-	context.ViewData("links", links)
+	linkGroupsDO := []orm.LinkGroup{}
+	this.DB.Order("sort").Find(&linkGroupsDO)
+	linkGroupsVO := [][]orm.Link{}
+	for _, linkGroup := range linkGroupsDO {
+		links := []orm.Link{}
+		this.DB.Order("group").Order("sort desc").Find(&linkGroup).Related(&links)
+		if(len(links)>0){
+			linkGroupsVO = append(linkGroupsVO, links)
+		}
+	}
+
+	context.ViewData("linkGroup", linkGroupsVO)
 	context.View("start.html")
 }
 

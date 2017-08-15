@@ -1,9 +1,6 @@
 package orm
 
-import "github.com/jinzhu/gorm"
-
 type Link struct {
-	gorm.Model
 	OprBaseModel
 	Url         string
 	Title       string
@@ -11,8 +8,16 @@ type Link struct {
 	Description string
 	Owner       string
 	Rating      uint
-	Group       string
-	Visible     string
-	Highlight   string
-	Sort        int
+	LinkGroup   LinkGroup
+	Visible     bool
+	Highlight   bool
+	Sort        uint
+}
+
+
+type LinkGroup struct {
+	OprBaseModel
+	Title       string
+	Description string
+	Sort        uint
 }

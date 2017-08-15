@@ -13,14 +13,14 @@
     </div>
     <div class="clearfix"></div>
     <div class="link_table">
-        {{ range .linkGroups }}
+        {{ range .linkGroup }}
         <div class="link_table_row">
             <div class="link_table_row_header">
-                <p>{{ .linkGroup.title }}</p>
+                <p>{{ (index . 0).Group }}</p>
             </div>
             <ul>
-                {{ range .link .linkGroup.Links }}
-                <li><a target="_blank" title="Owner:{{ .link.owner }},About:{{ .link.description }}" {{ if .link.highlight }} class="init" {{ end }} href="{{ .link.url }}">{{ .link.title }}</a></li>
+                {{ range . }}
+                <li><a target='_blank' title='Owner:{{ .Owner }},About:{{ .Description }}' {{ if eq .Highlight "1" }} class='init' {{ end }} href='{{ .Url }}'>{{ .Title }}</a></li>
                 {{ end }}
             </ul>
             <div class="clearfix"></div>
