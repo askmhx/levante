@@ -38,12 +38,11 @@ func (this *IndexCtrl) StartHandle(context context.Context) {
 	linkGroupsVO := [][]orm.Link{}
 	for _, linkGroup := range linkGroupsDO {
 		links := []orm.Link{}
-		this.DB.Order("group").Order("sort desc").Find(&linkGroup).Related(&links)
+		this.DB.Find(&linkGroup).Related(&links).Order("link_group_id").Order("sort desc")
 		if(len(links)>0){
 			linkGroupsVO = append(linkGroupsVO, links)
 		}
 	}
-
 	context.ViewData("linkGroup", linkGroupsVO)
 	context.View("start.html")
 }

@@ -19,7 +19,8 @@ func initDatabase(config *AppConfig) *gorm.DB{
 	if err != nil {
 		panic("failed to connect database")
 	}
-	setDBLogger(config)
+	db.LogMode(true)
+	//setDBLogger(config)
 	db.Set("gorm:table_options", "ENGINE=InnoDB")
 	db.AutoMigrate(&orm.Post{})
 	db.AutoMigrate(&orm.LinkGroup{})

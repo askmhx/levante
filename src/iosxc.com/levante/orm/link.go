@@ -1,5 +1,14 @@
 package orm
 
+
+type LinkGroup struct {
+	OprBaseModel
+	Title       string
+	Description string
+	Sort        uint
+}
+
+
 type Link struct {
 	OprBaseModel
 	Url         string
@@ -8,16 +17,9 @@ type Link struct {
 	Description string
 	Owner       string
 	Rating      uint
-	LinkGroup   LinkGroup
+	LinkGroup 	LinkGroup
+	LinkGroupID uint
 	Visible     bool
 	Highlight   bool
-	Sort        uint
-}
-
-
-type LinkGroup struct {
-	OprBaseModel
-	Title       string
-	Description string
 	Sort        uint
 }
