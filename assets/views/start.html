@@ -13,15 +13,13 @@
     </div>
     <div class="clearfix"></div>
     <div class="link_table">
-        {{ range .linkGroup }}
+        {{ range $linkGroup, $links := .linkGroupMap }}
         <div class="link_table_row">
             <div class="link_table_row_header">
-                <p>{{ (index . 0).LinkGroupId.Title }}</p>
-                <p>{{ (index . 0).LinkGroupId }}</p>
-                <p>{{ (index . 0) }}</p>
+                <p>{{ $linkGroup }}</p>
             </div>
             <ul>
-                {{ range . }}
+                {{ range $links }}
                 <li><a target='_blank' title='Owner:{{ .Owner }},About:{{ .Description }}' {{ if eq .Highlight true }} class='init' {{ end }} href='{{ .Url }}'>{{ .Title }}</a></li>
                 {{ end }}
             </ul>

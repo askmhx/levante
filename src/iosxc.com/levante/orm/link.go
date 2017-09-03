@@ -6,6 +6,7 @@ type LinkGroup struct {
 	Title       string
 	Description string
 	Sort        uint
+	Links   	[]Link
 }
 
 
@@ -17,7 +18,6 @@ type Link struct {
 	Description string
 	Owner       string
 	Rating      uint
-	LinkGroup 	LinkGroup
 	LinkGroupID uint
 	Visible     bool
 	Highlight   bool

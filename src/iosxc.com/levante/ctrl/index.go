@@ -35,15 +35,15 @@ func (this *IndexCtrl) StartHandle(context context.Context) {
 	context.ViewData(nav_index_key, nav_page_start)
 	linkGroupsDO := []orm.LinkGroup{}
 	this.DB.Order("sort").Find(&linkGroupsDO)
-	linkGroupsVO := [][]orm.Link{}
+	linkGroupMap := map[string][]orm.Link{}
 	for _, linkGroup := range linkGroupsDO {
 		links := []orm.Link{}
-		this.DB.Find(&linkGroup).Related(&links).Order("link_group_id").Order("sort desc")
+		this.DB.Model(&linkGroup).Related(&links).Order("sort desc")
 		if(len(links)>0){
-			linkGroupsVO = append(linkGroupsVO, links)
+			linkGroupMap[linkGroup.Title]= links
 		}
 	}
-	context.ViewData("linkGroup", linkGroupsVO)
+	context.ViewData("linkGroupMap", linkGroupMap)
 	context.View("start.html")
 }
 
