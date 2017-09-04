@@ -1,23 +1,23 @@
 <div class="container">
 
     <div class="row">
-        <h1>{{ post.title }}</h1>
+        <h1>{{ .post.Title }}</h1>
         <hr/>
     </div>
     <div class="row">
-        {{ post.content|safe }}
+        {{ .post.Content }}
     </div>
     <div class="row">
         <br/>
         <button type="button" class="btn btn-default btn-sm">
-            <span class="glyphicon glyphicon-thumbs-up"></span> {{ post.support }}
+            <span class="glyphicon glyphicon-thumbs-up"></span> {{ .post.Support }}
         </button>
         <button type="button" class="btn btn-default btn-sm">
-            <span class="glyphicon glyphicon-thumbs-down"></span> {{ post.oppose }}
+            <span class="glyphicon glyphicon-thumbs-down"></span> {{ .post.Oppose }}
         </button>
         <span class="pull-right">
-                        <span>{{ post.author }}</span>
-                        <span>{{ post.create_time }}</span>
+                        <span>{{ .post.Author }}</span>
+                        <span>{{ .post.CreateAt }}</span>
             </span>
     </div>
 
