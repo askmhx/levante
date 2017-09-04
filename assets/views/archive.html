@@ -1,3 +1,21 @@
 <div class="container">
-   <h1>archive</h1>
+   <ul class="list-unstyled">
+      {{ range cblog := postList }}
+      <li>
+         <div class="container well-sm">
+            <a href='/post/{{ .cblog.ID }}' class="h5">{{ .cblog.Title }}</a>
+            <span class="pull-right">{{ .cblog.CreateAt }}</span>
+         </div>
+      </li>
+      {{ end }}
+   </ul>
+   <ul class="pagination hidden">
+      <li><a href="#">&laquo;</a></li>
+      <li><a href="#">1</a></li>
+      <li><a href="#">2</a></li>
+      <li><a href="#">3</a></li>
+      <li><a href="#">4</a></li>
+      <li><a href="#">5</a></li>
+      <li><a href="#">&raquo;</a></li>
+   </ul>
 </div>

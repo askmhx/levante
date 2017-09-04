@@ -1,3 +1,38 @@
 <div class="container">
-21341342134
+
+    {{ range cblog := postList }}
+    <div class="row">
+        <article class="well-lg">
+            <header>
+                <h3><a href='{{ url 'post' cblog.id }}'>{{ cblog.title|truncatechars:30 }}</a></h3>
+                <div class="text-muted">
+                    <span class="pull-right">{{ cblog.author }}&nbsp;发表于{{ cblog.create_time }}</span>
+                </div>
+                <hr/>
+            </header>
+            <div>
+                {{ cblog.content|truncatewords_html:100|safe }}
+            </div>
+            <footer>
+                <hr>
+                <button type="button" class="btn btn-default btn-sm"
+                        onclick="thumbsClick(this,'{{ cblog.id }}','support')">
+                    <span class="glyphicon glyphicon-thumbs-up"></span> <span>{{ cblog.support }}</span>
+                </button>
+                <button type="button" class="btn btn-default btn-sm"
+                        onclick="thumbsClick(this,'{{ cblog.id }}','oppose')">
+                    <span class="glyphicon glyphicon-thumbs-down"></span> <span>{{ cblog.oppose }}</span>
+                </button>
+                <span class="pull-right text-primary">
+                   <a class="h4" href='{{ url 'post' cblog.id }}'> more...</a>
+                </span>
+            </footer>
+        </article>
+    </div>
+    {{ end }}
+
+    {{ if  postList.count >= 6 }}
+    <a class="btn btn-default center-block" href="{{ url 'archive' }}">Archives ...</a>
+    {{ endif }}
+
 </div>

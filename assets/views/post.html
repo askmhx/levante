@@ -1,28 +1,24 @@
 <div class="container">
 
     <div class="row">
-
-        <div class="col-lg-12">
-
-            <h1>{{ .Title }}</h1>
-
-            <p class="lead">
-                by <a href="#">{{ .Author }}</a>
-            </p>
-
-            <hr>
-
-            <p><span class="glyphicon glyphicon-time"></span> Posted on {{ .UpdateAt }}</p>
-            <hr>
-
-            <p class="lead">
-                {{ .Content }}
-            </p>
-
-            <hr>
-
-        </div>
-
+        <h1>{{ post.title }}</h1>
+        <hr/>
+    </div>
+    <div class="row">
+        {{ post.content|safe }}
+    </div>
+    <div class="row">
+        <br/>
+        <button type="button" class="btn btn-default btn-sm">
+            <span class="glyphicon glyphicon-thumbs-up"></span> {{ post.support }}
+        </button>
+        <button type="button" class="btn btn-default btn-sm">
+            <span class="glyphicon glyphicon-thumbs-down"></span> {{ post.oppose }}
+        </button>
+        <span class="pull-right">
+                        <span>{{ post.author }}</span>
+                        <span>{{ post.create_time }}</span>
+            </span>
     </div>
 
 </div>
