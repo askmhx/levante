@@ -19,15 +19,18 @@ const nav_page_about = "about"
 
 func (this *IndexCtrl) IndexHandle(context context.Context) {
 	context.ViewData(nav_index_key, nav_page_index)
+	var postList []orm.Post
+	this.DB.Order("created_at DESC").Limit(6).Find(&postList)
+	context.ViewData("postList", postList)
 	context.View("index.html")
 }
 
 func (this *IndexCtrl) ArchiveHandle(context context.Context) {
 	context.ViewData(nav_index_key, nav_page_archive)
 	page := util.GetPage(context)
-	var posts []orm.Post
-	this.DB.Offset(page.Start()).Limit(page.End()).Find(&posts)
-	context.ViewData("posts", posts)
+	var postList []orm.Post
+	this.DB.Offset(page.Start()).Limit(page.End()).Find(&postList)
+	context.ViewData("postList", postList)
 	context.View("archive.html")
 }
 

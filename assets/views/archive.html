@@ -1,10 +1,10 @@
 <div class="container">
    <ul class="list-unstyled">
-      {{ range cblog := postList }}
+      {{ range $index , $cblog := .postList }}
       <li>
          <div class="container well-sm">
-            <a href='/post/{{ .cblog.ID }}' class="h5">{{ .cblog.Title }}</a>
-            <span class="pull-right">{{ .cblog.CreateAt }}</span>
+            <a href='/post/{{ $cblog.ID }}' class="h5">{{ $cblog.Title }}</a>
+            <span class="pull-right">{{ $cblog.CreatedAt }}</span>
          </div>
       </li>
       {{ end }}
