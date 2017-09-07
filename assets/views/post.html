@@ -2,23 +2,29 @@
 
     <div class="row">
         <h1>{{ .post.Title }}</h1>
-        <hr/>
+
     </div>
+    <div class="row">
+        <span class="pull-right">
+               <span class="oi oi-person">{{ .post.Author }}</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+               <span class="oi oi-calendar">{{ .post.CreatedAt.Format "1989-02-14 15:04:05" }}</span>
+        </span>
+    </div>
+    <hr/>
     <div class="row">
         {{ .post.Content }}
     </div>
     <div class="row">
         <br/>
-        <button type="button" class="btn btn-default btn-sm">
-            <span class="glyphicon glyphicon-thumbs-up"></span> {{ .post.Support }}
+    </div>
+    <div class="row">
+        <button type="button" class="btn btn-outline-secondary">
+            <span class="oi oi-thumb-up"></span> {{ .post.Support }}
         </button>
-        <button type="button" class="btn btn-default btn-sm">
-            <span class="glyphicon glyphicon-thumbs-down"></span> {{ .post.Oppose }}
+        &nbsp; &nbsp;
+        <button type="button" class="btn btn-outline-secondary">
+            <span class="oi oi-thumb-down"></span> {{ .post.Oppose }}
         </button>
-        <span class="pull-right">
-                        <span>{{ .post.Author }}</span>
-                        <span>{{ .post.CreatedAt }}</span>
-            </span>
     </div>
 
 </div>

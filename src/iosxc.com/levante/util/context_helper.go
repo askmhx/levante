@@ -8,7 +8,12 @@ import (
 
 func GetPage(context context.Context) model.Page {
 	page := model.Page{}
-	page.PageIndex, _ = strconv.ParseUint(context.Params().Get(CONST_PARAM_PAGE_INDEX), 10, 64)
-	page.PageSize, _ = strconv.ParseUint(context.Params().Get(CONST_PARAM_PAGE_SIZE), 10, 64)
+	var err error
+	page.PageIndex, err = strconv.ParseUint(context.Params().Get(CONST_PARAM_PAGE_INDEX), 10, 64)
+	page.PageSize, err = strconv.ParseUint(context.Params().Get(CONST_PARAM_PAGE_SIZE), 10, 64)
+	if err != nil {
+		page.PageSize = CONST_DEFAULT_PAGE_SIZE
+		page.PageIndex = 0
+	}
 	return page
 }
