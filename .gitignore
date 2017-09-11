@@ -2,7 +2,15 @@ pkg/
 logs/
 bin/
 out/
-**.DS_Store
 .idea/
+src/github.com/**
+**/.DS_Store
+**/Thumbs.db
 *.iml
 *.iws
+*.exe
+*.dll
+*.so
+*.dylib
+*.test
+*.out
