@@ -4,6 +4,7 @@ bin/
 out/
 .idea/
 src/github.com/**
+src/golang.org/**
 **/.DS_Store
 **/Thumbs.db
 *.iml
