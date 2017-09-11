@@ -11,22 +11,15 @@ type IndexCtrl struct {
 	DB *gorm.DB
 }
 
-const nav_index_key = "navIndexKey"
-const nav_page_index = "index"
-const nav_page_archive = "archive"
-const nav_page_start = "start"
-const nav_page_about = "about"
 
 func (this *IndexCtrl) IndexHandle(context context.Context) {
-	context.ViewData(nav_index_key, nav_page_index)
 	var postList []orm.Post
-	this.DB.Order("created_at DESC").Limit(6).Find(&postList)
+	this.DB.Order("created_at DESC").Limit(5).Find(&postList)
 	context.ViewData("postList", postList)
 	context.View("index.html")
 }
 
 func (this *IndexCtrl) ArchiveHandle(context context.Context) {
-	context.ViewData(nav_index_key, nav_page_archive)
 	page := util.GetPage(context)
 	var postList []orm.Post
 	this.DB.Offset(page.Start()).Limit(page.End()).Find(&postList)
@@ -35,7 +28,6 @@ func (this *IndexCtrl) ArchiveHandle(context context.Context) {
 }
 
 func (this *IndexCtrl) StartHandle(context context.Context) {
-	context.ViewData(nav_index_key, nav_page_start)
 	linkGroupsDO := []orm.LinkGroup{}
 	this.DB.Order("sort").Find(&linkGroupsDO)
 	linkGroupMap := map[string][]orm.Link{}
@@ -51,6 +43,5 @@ func (this *IndexCtrl) StartHandle(context context.Context) {
 }
 
 func (this *IndexCtrl) AboutHandle(context context.Context) {
-	context.ViewData(nav_index_key, nav_page_about)
 	context.View("about.html")
 }

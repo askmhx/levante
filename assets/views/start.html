@@ -1,29 +1,31 @@
 {{ define "head"}}
-<link href="/statics/css/start.css" rel="stylesheet">
+<!--<link href="/statics/css/start.css" rel="stylesheet">-->
 {{ end }}
 
 <div class="container">
-    <div id="search_content">
-        <form class="search_form" id="queryForm" action="http://www.google.com/search" target="_blank">
-            <input accesskey="s" id="kw" type="text" name="q" placeholder="输入关键词" onkeydown="submitForm(e)"/>
-            <input class="search_btn" type="button" onclick="subForm(1)" value="Google"/>
-            <input class="search_btn" type="button" onclick="subForm(2)" value="Baidu"/>
-            <input class="search_btn" type="button" onclick="subForm(3)" value="Bing"/>
+    <div class="row">
+        <form class="form-inline col-12" id="queryForm" action="http://www.google.com/search" target="_blank">
+            <div class="form-group mr-auto ml-auto">
+                <input accesskey="s" id="kw" class="form-control border-secondary" style="width: 20em" type="text" name="q" placeholder="输入想搜的内容" onkeydown="submitForm(e)"/>
+                <input class="btn btn-outline-primary ml-2 border-secondary" type="button" onclick="subForm(1)" value="Google"/>
+                <input class="btn btn-outline-primary ml-2 border-secondary" type="button" onclick="subForm(2)" value="Baidu"/>
+                <input class="btn btn-outline-primary ml-2 border-secondary" type="button" onclick="subForm(3)" value="Bing"/>
+            </div>
         </form>
     </div>
-    <div class="clearfix"></div>
-    <div class="link_table">
+    <div class="row mt-lg-4">
         {{ range $linkGroup, $links := .linkGroupMap }}
-        <div class="link_table_row">
-            <div class="link_table_row_header">
-                <p>{{ $linkGroup }}</p>
+        <div class="card  border-light mb-lg-3">
+            <div class="card-header bg-transparent border-light float-left">
+               {{ $linkGroup }}
             </div>
-            <ul>
-                {{ range $links }}
-                <li><a target='_blank' title='Owner:{{ .Owner }},About:{{ .Description }}' {{ if eq .Highlight true }} class='init' {{ end }} href='{{ .Url }}'>{{ .Title }}</a></li>
-                {{ end }}
-            </ul>
-            <div class="clearfix"></div>
+            <div class="card-body float-right">
+                <ul>
+                    {{ range $links }}
+                    <li class="float-left card-link list-inline-item"><a target='_blank' title='Owner:{{ .Owner }},About:{{ .Description }}' {{ if eq .Highlight true }} class='text-primary' {{else}} class='text-secondary' {{ end }} href='{{ .Url }}'>{{ .Title }}</a></li>
+                    {{ end }}
+                </ul>
+            </div>
         </div>
         {{ end }}
     </div>

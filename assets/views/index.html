@@ -1,38 +1,71 @@
 <div class="container">
-    {{ range $index , $cblog := .postList }}
     <div class="row">
-        <article class="well-lg">
-            <header>
-                <h3><a href='/post/{{ $cblog.OprBaseModel.ID }}'>{{ $cblog.Title }}</a></h3>
-                <div class="text-muted">
-                    <span class="pull-right">{{ $cblog.Author }}&nbsp;发表于{{ $cblog.CreatedAt }}</span>
+        <div class="col-8">
+            {{ range $index , $cblog := .postList }}
+            <div class="card mb-4 border-light">
+                <div class="card-body">
+                    <h2 class="card-title"><a class="text-dark" href='/post/{{ $cblog.OprBaseModel.ID }}'>{{ $cblog.Title }}</a></h2>
+                    <p class="card-text">{{ printf "%.200s" $cblog.Content }} ...</p>
+                    <a href="/post/{{ $cblog.OprBaseModel.ID }}" class="btn btn-outline-primary">阅读更多 →</a>
                 </div>
-                <hr/>
-            </header>
-            <div>
-                {{ printf "%.200s"  $cblog.Content }}
+                <div class="card-footer text-muted bg-transparent border-light">
+                    <a class="text-secondary btn btn-sm btn-outline-secondary" href="javascript:thumbsClick(this,'{{ $cblog.OprBaseModel.ID }}','support')">
+                        <span class="oi oi-thumb-up"></span> <span>{{ $cblog.Support }}</span>
+                    </a>
+                    <a class="text-secondary btn btn-sm btn-outline-secondary" href="javascript:thumbsClick(this,'{{ $cblog.OprBaseModel.ID }}','oppose')">
+                        <span class="oi oi-thumb-down"></span> <span>{{ $cblog.Oppose }}</span>
+                    </a>
+                    <a href="/user/{{ $cblog.Author }}">{{ $cblog.Author }} </a> 发表于 {{ $cblog.CreatedAt.Format "2006-01-02 15:04:05" }}
+                </div>
             </div>
-            <footer>
-                <hr>
-                <button type="button" class="btn btn-default btn-sm"
-                        onclick="thumbsClick(this,'{{ $cblog.OprBaseModel.ID }}','support')">
-                    <span class="oi oi-thumb-up"></span> <span>{{ $cblog.Support }}</span>
-                </button>
-                <button type="button" class="btn btn-default btn-sm"
-                        onclick="thumbsClick(this,'{{ $cblog.OprBaseModel.ID }}','oppose')">
-                    <span class="oi oi-thumb-down"></span> <span>{{ $cblog.Oppose }}</span>
-                </button>
-                <span class="pull-right text-primary">
-                   <a class="h4" href='/post/{{ $cblog.OprBaseModel.ID }}'> more...</a>
-                </span>
-            </footer>
-            <hr/>
-        </article>
+            {{ end }}
+
+            {{ if gt (len .postList) 4 }}
+            <a class="btn btn-default center-block" href="/archive/"> 查看存档文章 ...</a>
+            {{ end }}
+        </div>
+        <div class="col-4">
+            <div class="form-inline">
+                <div class="form-group">
+                    <input class="form-control"/>
+                    <button class="btn btn-sm btn-outline-secondary">搜索</button>
+                </div>
+            </div>
+            <div class="card mt-4 border-light">
+                <div class="card-header bg-transparent border-light">
+                    存档
+                </div>
+                <div class="card-body border-light">
+                    <ul class="list-unstyled">
+                        <li><a href="#">2017-08-20</a></li>
+                        <li><a href="#">2017-08-20</a></li>
+                        <li><a href="#">2017-08-20</a></li>
+                        <li><a href="#">2017-08-20</a></li>
+                        <li><a href="#">2017-08-20</a></li>
+                        <li><a href="#">2017-08-20</a></li>
+                        <li><a href="#">2017-08-20</a></li>
+                        <li><a href="#">2017-08-20</a></li>
+                        <li><a href="#">2017-08-20</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="card mt-4 border-light">
+                <div class="card-header bg-transparent border-light">
+                    分类
+                </div>
+                <div class="card-body border-light">
+                    <ul class="list-unstyled">
+                        <li><a href="#">乱七八糟</a></li>
+                        <li><a href="#">乱七八糟</a></li>
+                        <li><a href="#">乱七八糟</a></li>
+                        <li><a href="#">乱七八糟</a></li>
+                        <li><a href="#">乱七八糟</a></li>
+                        <li><a href="#">乱七八糟</a></li>
+                        <li><a href="#">乱七八糟</a></li>
+                        <li><a href="#">乱七八糟</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
     </div>
-    {{ end }}
-
-    {{ if gt (len .postList) 6 }}
-        <a class="btn btn-default center-block" href="/archive/">Archives ...</a>
-    {{ end }}
-
 </div>

@@ -13,7 +13,6 @@ type PostCtrl struct {
 }
 
 func (this *PostCtrl) ReadHandle(context context.Context) {
-	context.ViewData(nav_index_key, nav_page_index)
 	pid := context.Params().Get("pid")
 	post := orm.Post{}
 	if err := this.DB.Where("id = ? ", pid).Find(&post).Error; err != nil {

@@ -33,10 +33,7 @@ func setLogger(application *iris.Application, config *AppConfig) {
 		file, _ = os.Create(logPath)
 	}
 	defer file.Close()
-	logger, close := NewRequestLogger(config)
-
-	defer close()
-
+	logger := NewRequestLogger(config)
 	application.Use(logger)
 }
 

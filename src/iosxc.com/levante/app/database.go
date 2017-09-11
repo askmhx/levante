@@ -19,8 +19,8 @@ func initDatabase(config *AppConfig) *gorm.DB{
 	if err != nil {
 		panic("failed to connect database")
 	}
+	setDBLogger(config)
 	db.LogMode(true)
-	//setDBLogger(config)
 	db.Set("gorm:table_options", "ENGINE=InnoDB")
 	db.AutoMigrate(&orm.Post{})
 	db.AutoMigrate(&orm.LinkGroup{})
@@ -34,6 +34,9 @@ func setDBLogger(config *AppConfig) {
 	if !util.CheckIsExistPath(logPath) {
 		panic("logPath:" + logPath + " is not exist! bootstrap.go must execute setLogger() before setDatabase()")
 	}
-	file, _ := os.Open(logPath)
-	db.SetLogger(log.New(file, "\r\nDB:", 0))
+	f, err := os.OpenFile(logPath, os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0666)
+	if err != nil {
+		panic(err)
+	}
+	db.SetLogger(log.New(f, "", 0))
 }

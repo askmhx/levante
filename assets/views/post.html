@@ -1,28 +1,39 @@
 <div class="container">
 
-    <div class="row">
-        <h1>{{ .post.Title }}</h1>
+    <h1 class="mt-4">{{ .post.Title }}</h1>
+    <p class="lead">
+        by
+        <a href="#">{{ .post.Author }}</a>
+    </p>
 
-    </div>
-    <div class="row">
-        <span class="pull-right">
-               <span class="oi oi-person">{{ .post.Author }}</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-               <span class="oi oi-calendar">{{ .post.CreatedAt.Format "1989-02-14 15:04:05" }}</span>
-        </span>
-    </div>
-    <hr/>
-    <div class="row">
+    <hr>
+
+    <p>发布于 {{ .post.CreatedAt.Format "1989-02-14 15:04:05" }}</p>
+
+    <hr>
+
+    <p>
         {{ .post.Content }}
+    </p>
+
+    <div class="card">
+        <h5 class="card-header">评论:</h5>
+        <div class="card-body">
+            <form>
+                <div class="form-group">
+                    <textarea class="form-control" rows="3"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
     </div>
-    <div class="row">
-        <br/>
-    </div>
-    <div class="row">
-        <button type="button" class="btn btn-outline-secondary">
+
+    <div class="card">
+        <button type="button" class="btn btn-sm btn-outline-secondary">
             <span class="oi oi-thumb-up"></span> {{ .post.Support }}
         </button>
         &nbsp; &nbsp;
-        <button type="button" class="btn btn-outline-secondary">
+        <button type="button" class="btn btn-sm btn-outline-secondary">
             <span class="oi oi-thumb-down"></span> {{ .post.Oppose }}
         </button>
     </div>
