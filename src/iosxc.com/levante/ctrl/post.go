@@ -20,7 +20,7 @@ func (this *PostCtrl) ReadHandle(context context.Context) {
 		return
 	}
 	context.ViewData("post", post)
-	context.View("post.html")
+	context.View("front/post.html")
 }
 
 func (this *PostCtrl) CreateHandle(ctx context.Context) {
@@ -37,7 +37,7 @@ func (this *PostCtrl) DeleteHandle(ctx context.Context) {
 	post := orm.Post{}
 	db := ctx.Value(util.CONST_APP_DB).(*gorm.DB)
 	if err := db.Where("id = ?", pid).First(&post).Error; err != nil {
-		ctx.View("404.html")
+		ctx.View("front/404.html")
 		return
 	}
 	post.IsDeleted = true
@@ -47,6 +47,6 @@ func (this *PostCtrl) DeleteHandle(ctx context.Context) {
 	ret.Code = model.OperationResultCodeSuccess
 	ret.RetURL = "https://www.baidu.com"
 	ctx.ViewData("result", ret)
-	ctx.View("result.html")
+	ctx.View("front/result.html")
 
 }

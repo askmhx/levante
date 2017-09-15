@@ -19,7 +19,7 @@
     },
     "template": {
       "path": "",
-      "layout": "layout.html",
+      "layout": "front/layout.html",
       "ext": "html",
       "reload": true
     }

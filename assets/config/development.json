@@ -19,7 +19,7 @@
     },
     "template": {
       "path": "assets/views/",
-      "layout": "layout.html",
+      "layout": "front/layout.html",
       "ext": ".html",
       "reload": true
     }

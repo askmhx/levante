@@ -16,7 +16,7 @@ func (this *IndexCtrl) IndexHandle(context context.Context) {
 	var postList []orm.Post
 	this.DB.Order("created_at DESC").Limit(5).Find(&postList)
 	context.ViewData("postList", postList)
-	context.View("index.html")
+	context.View("front/index.html")
 }
 
 func (this *IndexCtrl) ArchiveHandle(context context.Context) {
@@ -24,7 +24,7 @@ func (this *IndexCtrl) ArchiveHandle(context context.Context) {
 	var postList []orm.Post
 	this.DB.Offset(page.Start()).Limit(page.End()).Find(&postList)
 	context.ViewData("postList", postList)
-	context.View("archive.html")
+	context.View("front/archive.html")
 }
 
 func (this *IndexCtrl) StartHandle(context context.Context) {
@@ -39,9 +39,9 @@ func (this *IndexCtrl) StartHandle(context context.Context) {
 		}
 	}
 	context.ViewData("linkGroupMap", linkGroupMap)
-	context.View("start.html")
+	context.View("front/start.html")
 }
 
 func (this *IndexCtrl) AboutHandle(context context.Context) {
-	context.View("about.html")
+	context.View("front/about.html")
 }

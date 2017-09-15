@@ -48,7 +48,7 @@ func initRoute(application *iris.Application, config *AppConfig,db *gorm.DB) {
 
 func registerErrorHandler(application *iris.Application) {
 	application.OnErrorCode(iris.StatusNotFound, func(ctx context.Context) {
-		ctx.View("404.html")
+		ctx.View("front/404.html")
 	})
 	//
 	//application.OnErrorCode(iris.StatusInternalServerError, func(ctx context.Context) {
