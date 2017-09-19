@@ -29,11 +29,11 @@ func (this *IndexCtrl) ArchiveHandle(context context.Context) {
 
 func (this *IndexCtrl) StartHandle(context context.Context) {
 	linkGroupsDO := []orm.LinkGroup{}
-	this.DB.Order("sort").Find(&linkGroupsDO)
+	this.DB.Order("sort DESC").Find(&linkGroupsDO)
 	linkGroupMap := map[string][]orm.Link{}
 	for _, linkGroup := range linkGroupsDO {
 		links := []orm.Link{}
-		this.DB.Model(&linkGroup).Related(&links).Order("sort desc")
+		this.DB.Model(&linkGroup).Related(&links).Order("sort ASC")
 		if(len(links)>0){
 			linkGroupMap[linkGroup.Title]= links
 		}
