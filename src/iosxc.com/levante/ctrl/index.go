@@ -16,6 +16,10 @@ func (this *IndexCtrl) IndexHandle(context context.Context) {
 	var postList []orm.Post
 	this.DB.Order("created_at DESC").Limit(5).Find(&postList)
 	context.ViewData("postList", postList)
+	//TODO
+	//context.ViewData("monthList", postList)
+	//context.ViewData("lastList", postList)
+	//context.ViewData("tagList", nil)
 	context.View("front/index.html")
 }
 
