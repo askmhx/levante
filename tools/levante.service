@@ -1,6 +1,6 @@
 [Unit]
 Description=LEVANTE SERVER
-After=network.target
+After=network.target mariadb.service
 
 [Service]
 Type=simple
