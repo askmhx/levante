@@ -13,4 +13,5 @@ type Post struct {
 	PermanentURL  string
 	PostType      string
 	SourceLink    string
+	Catalog string
 }

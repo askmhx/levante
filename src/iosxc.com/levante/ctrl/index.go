@@ -11,15 +11,21 @@ type IndexCtrl struct {
 	DB *gorm.DB
 }
 
-
 func (this *IndexCtrl) IndexHandle(context context.Context) {
 	var postList []orm.Post
 	this.DB.Order("created_at DESC").Limit(5).Find(&postList)
 	context.ViewData("postList", postList)
-	//TODO
-	//context.ViewData("monthList", postList)
-	//context.ViewData("lastList", postList)
-	//context.ViewData("tagList", nil)
+	type ColCount struct {
+		ColName   string
+		Count int
+	}
+
+	var mcList []ColCount
+	this.DB.Raw("select date_format(updated_at, '%Y-%m') as col_name,count(1) as count from levante.posts group by col_name order by col_name desc").Scan(&mcList);
+	context.ViewData("monthList", mcList)
+	mcList = nil
+	this.DB.Raw("select catalog as col_name,count(1) as count from levante.posts group by col_name order by col_name desc").Scan(&mcList);
+	context.ViewData("tagList", mcList)
 	context.View("front/index.html")
 }
 
@@ -38,8 +44,8 @@ func (this *IndexCtrl) StartHandle(context context.Context) {
 	for _, linkGroup := range linkGroupsDO {
 		links := []orm.Link{}
 		this.DB.Model(&linkGroup).Related(&links).Order("sort ASC")
-		if(len(links)>0){
-			linkGroupMap[linkGroup.Title]= links
+		if (len(links) > 0) {
+			linkGroupMap[linkGroup.Title] = links
 		}
 	}
 	context.ViewData("linkGroupMap", linkGroupMap)

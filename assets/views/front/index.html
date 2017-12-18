@@ -1,28 +1,32 @@
 <div class="container">
     <div class="row">
         <div class="col-8">
-            {{ range $index , $cblog := .postList }}
+        {{ range $index , $cblog := .postList }}
             <div class="card mb-4 border-light">
                 <div class="card-body">
-                    <h2 class="card-title"><a class="text-dark" href='/post/{{ $cblog.OprBaseModel.ID }}'>{{ $cblog.Title }}</a></h2>
+                    <h2 class="card-title"><a class="text-dark"
+                                              href='/post/{{ $cblog.OprBaseModel.ID }}'>{{ $cblog.Title }}</a></h2>
                     <p class="card-text">{{ printf "%.200s" $cblog.Content }} ...</p>
                     <a href="/post/{{ $cblog.OprBaseModel.ID }}" class="btn btn-outline-primary">阅读更多 →</a>
                 </div>
                 <div class="card-footer text-muted bg-transparent border-light">
-                    <a class="text-secondary btn btn-sm btn-outline-secondary" href="javascript:thumbsClick(this,'{{ $cblog.OprBaseModel.ID }}','support')">
+                    <a class="text-secondary btn btn-sm btn-outline-secondary"
+                       href="javascript:thumbsClick(this,'{{ $cblog.OprBaseModel.ID }}','support')">
                         <span class="oi oi-thumb-up"></span> <span>{{ $cblog.Support }}</span>
                     </a>
-                    <a class="text-secondary btn btn-sm btn-outline-secondary" href="javascript:thumbsClick(this,'{{ $cblog.OprBaseModel.ID }}','oppose')">
+                    <a class="text-secondary btn btn-sm btn-outline-secondary"
+                       href="javascript:thumbsClick(this,'{{ $cblog.OprBaseModel.ID }}','oppose')">
                         <span class="oi oi-thumb-down"></span> <span>{{ $cblog.Oppose }}</span>
                     </a>
-                    <a href="/user/{{ $cblog.Author }}">{{ $cblog.Author }} </a> 发表于 {{ $cblog.CreatedAt.Format "2006-01-02 15:04:05" }}
+                    <a href="/user/{{ $cblog.Author }}">{{ $cblog.Author }} </a>
+                    发表于 {{ $cblog.CreatedAt.Format "2006-01-02 15:04:05" }}
                 </div>
             </div>
-            {{ end }}
+        {{ end }}
 
-            {{ if gt (len .postList) 4 }}
+        {{ if gt (len .postList) 4 }}
             <a class="btn btn-default center-block" href="/archive/"> 查看存档文章 ...</a>
-            {{ end }}
+        {{ end }}
         </div>
         <div class="col-4">
             <div class="form-inline">
@@ -37,15 +41,9 @@
                 </div>
                 <div class="card-body border-light">
                     <ul class="list-unstyled">
-                        <li><a href="#">2017-08-20</a></li>
-                        <li><a href="#">2017-08-20</a></li>
-                        <li><a href="#">2017-08-20</a></li>
-                        <li><a href="#">2017-08-20</a></li>
-                        <li><a href="#">2017-08-20</a></li>
-                        <li><a href="#">2017-08-20</a></li>
-                        <li><a href="#">2017-08-20</a></li>
-                        <li><a href="#">2017-08-20</a></li>
-                        <li><a href="#">2017-08-20</a></li>
+                    {{ range $index , $mc := .monthList }}
+                        <li><a href="#">{{$mc.ColName}} {{$mc.Count}}</a></li>
+                    {{ end }}
                     </ul>
                 </div>
             </div>
@@ -55,14 +53,9 @@
                 </div>
                 <div class="card-body border-light">
                     <ul class="list-unstyled">
-                        <li><a href="#">乱七八糟</a></li>
-                        <li><a href="#">乱七八糟</a></li>
-                        <li><a href="#">乱七八糟</a></li>
-                        <li><a href="#">乱七八糟</a></li>
-                        <li><a href="#">乱七八糟</a></li>
-                        <li><a href="#">乱七八糟</a></li>
-                        <li><a href="#">乱七八糟</a></li>
-                        <li><a href="#">乱七八糟</a></li>
+                        {{ range $index , $kc := .tagList }}
+                            <li><a href="#">{{$kc.ColName}} {{$kc.Count}}</a></li>
+                        {{ end }}
                     </ul>
                 </div>
             </div>
