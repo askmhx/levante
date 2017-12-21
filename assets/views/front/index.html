@@ -4,21 +4,20 @@
         {{ range $index , $cblog := .postList }}
             <div class="card mb-4 border-light">
                 <div class="card-body">
-                    <h2 class="card-title"><a class="text-dark"
-                                              href='/post/{{ $cblog.OprBaseModel.ID }}'>{{ $cblog.Title }}</a></h2>
+                    <h2 class="card-title"><a class="text-dark h3" href='/post/{{ $cblog.OprBaseModel.ID }}'>{{ $cblog.Title }}</a></h2>
+
                     <p class="card-text">{{ printf "%.200s" $cblog.Content }} ...</p>
-                    <a href="/post/{{ $cblog.OprBaseModel.ID }}" class="btn btn-outline-primary">阅读更多 →</a>
                 </div>
-                <div class="card-footer text-muted bg-transparent border-light">
-                    <a class="text-secondary btn btn-sm btn-outline-secondary"
+                <div class="card-footer text-muted bg-transparent border-light font-weight-light">
+                    <a class="text-secondary"
                        href="javascript:thumbsClick(this,'{{ $cblog.OprBaseModel.ID }}','support')">
                         <span class="oi oi-thumb-up"></span> <span>{{ $cblog.Support }}</span>
                     </a>
-                    <a class="text-secondary btn btn-sm btn-outline-secondary"
+                    <a class="text-secondary "
                        href="javascript:thumbsClick(this,'{{ $cblog.OprBaseModel.ID }}','oppose')">
                         <span class="oi oi-thumb-down"></span> <span>{{ $cblog.Oppose }}</span>
                     </a>
-                    <a href="/user/{{ $cblog.Author }}">{{ $cblog.Author }} </a>
+                    <a class="text-muted" href="/user/{{ $cblog.Author }}">{{ $cblog.Author }} </a>
                     发表于 {{ $cblog.CreatedAt.Format "2006-01-02 15:04:05" }}
                 </div>
             </div>
@@ -29,20 +28,14 @@
         {{ end }}
         </div>
         <div class="col-4">
-            <div class="form-inline">
-                <div class="form-group">
-                    <input class="form-control"/>
-                    <button class="btn btn-sm btn-outline-secondary">搜索</button>
-                </div>
-            </div>
-            <div class="card mt-4 border-light">
+            <div class="card border-light">
                 <div class="card-header bg-transparent border-light">
                     存档
                 </div>
                 <div class="card-body border-light">
                     <ul class="list-unstyled">
                     {{ range $index , $mc := .monthList }}
-                        <li><a href="#">{{$mc.ColName}} {{$mc.Count}}</a></li>
+                        <li><a class="text-muted" href="/archive/{{$mc.ColName}}">{{$mc.ColName}} ({{$mc.Count}})</a></li>
                     {{ end }}
                     </ul>
                 </div>
@@ -54,7 +47,7 @@
                 <div class="card-body border-light">
                     <ul class="list-unstyled">
                         {{ range $index , $kc := .tagList }}
-                            <li><a href="#">{{$kc.ColName}} {{$kc.Count}}</a></li>
+                            <li><a class="text-muted" href="/catalog/{{$kc.ColName}}">{{$kc.ColName}} ({{$kc.Count}})</a></li>
                         {{ end }}
                     </ul>
                 </div>
