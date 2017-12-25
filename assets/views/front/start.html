@@ -18,19 +18,20 @@
     <div class="row mt-lg-4">
         <table class="table bg-transparent">
             <tbody>
-            {{ range $linkGroup, $links := .linkGroupMap }}
-            <tr>
-                <th class="pt-4 pb-4" scope="row">{{ $linkGroup }}</th>
+            {{ range $gIndex, $linkEntry := .linkGroupList }}
+                <tr>
+                <th class="pt-4 pb-4" scope="row">{{ $linkEntry.Title }}</th>
                 <td class="pt-4 pb-4">
-                {{ range $links }}
-                    <a target='_blank'
-                       title='Owner:{{ .Owner }},About:{{ .Description }}'
-                       {{ if eq .Highlight true }}
-                       class='mr-lg-2 ml-lg-2 text-primary' {{else}}
-                       class='mr-lg-2 ml-lg-2 text-secondary' {{ end }}
-                       href='{{ .Url }}'>{{ .Title }}</a>
-                {{ end }}
-                </td>
+                {{ range $index, $link := $linkEntry.LinkList }}
+                    <a target='_blank' title='Owner:{{ $link.Owner }},About:{{ $link.Description }}'
+                    {{ if eq $link.Highlight 1 }}
+                       class='mr-lg-2 ml-lg-2 text-primary'
+                    {{else}}
+                       class='mr-lg-2 ml-lg-2 text-secondary'
+                    {{ end }}
+                       href='{{ $link.Url }}'>{{ $link.Title }}</a>
+                {{end}}
+            </td>
             </tr>
             {{ end }}
             </tbody>
