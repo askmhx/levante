@@ -4,13 +4,12 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/kataras/iris"
-	"github.com/kataras/iris/context"
-	"iosxc.com/levante/util"
 	"os"
 )
 
 type AppConfig struct {
 	Home string
+	IrisYML string
 
 	Server struct {
 		Port    uint
@@ -46,8 +45,7 @@ type AppConfig struct {
 
 var config *AppConfig
 
-func initConfig(application *iris.Application, configPath string) *AppConfig {
-
+func initConfig(app *iris.Application, configPath string) *AppConfig {
 	configFile, err := os.Open(configPath)
 	defer configFile.Close()
 	if err != nil {
@@ -55,10 +53,6 @@ func initConfig(application *iris.Application, configPath string) *AppConfig {
 	}
 	jsonParser := json.NewDecoder(configFile)
 	jsonParser.Decode(&config)
-
-	application.UseGlobal(func(context context.Context) {
-		context.Values().Set(util.CONST_APP_CONFIG, config)
-		context.Next()
-	})
+	app.Configure(iris.WithConfiguration(iris.YAML(config.IrisYML)))
 	return config
 }

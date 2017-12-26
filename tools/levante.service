@@ -4,7 +4,7 @@ After=network.target mariadb.service
 
 [Service]
 Type=simple
-ExecStart=/opt/server/levante/bin/launch -cfg /opt/server/levante/assets/config/production.json
+ExecStart=/opt/server/levante/bin/levante -cfg /opt/server/levante/assets/config/production.json
 
 [Install]
 WantedBy=multi-user.target

@@ -1,5 +1,6 @@
 {
   "home": "/Users/Crazz/WorkSpace/GOWork/levante/",
+  "irisYML": "/Users/Crazz/WorkSpace/GOWork/levante/assets/config/iris.yml",
   "server": {
     "port": 8992,
     "addr": "127.0.0.1",

@@ -1,30 +1,18 @@
 package ctrl
 
 import (
-	"github.com/kataras/iris/context"
-	"github.com/jinzhu/gorm"
+	"iosxc.com/levante/app"
 )
 
 type CommentCtrl struct {
-	db *gorm.DB
 }
 
-func (this *CommentCtrl) ReadHandle(ctx context.Context) {
+func (this *CommentCtrl) ReadHandle(ctx *app.Context) {
 	ctx.Writef("hello world!")
 
 }
 
-func (this *CommentCtrl) CreateHandle(ctx context.Context) {
-	ctx.Writef("hello world!")
-
-}
-
-func (this *CommentCtrl) UpdateHandle(ctx context.Context) {
-	ctx.Writef("hello world!")
-
-}
-
-func (this *CommentCtrl) DeleteHandle(ctx context.Context) {
+func (this *CommentCtrl) CreateHandle(ctx *app.Context) {
 	ctx.Writef("hello world!")
 
 }
