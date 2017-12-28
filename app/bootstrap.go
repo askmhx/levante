@@ -13,12 +13,12 @@ import (
 //执行顺序依次如下
 //config ->home ->logger -> db -> owner -> web -> run
 
-func Run(app *iris.Application,cfgFile string) {
+func ConfigAndStart(app *iris.Application, cfgFile string) {
 	config := initConfig(app, cfgFile)
 	setHome(app, config)
 	setLogger(app, config)
-	setDatabase(app,config)
-	setCtxHolder(app,config)
+	setDatabase(app, config)
+	setCtxHolder(app, config)
 	setWebView(app, config)
 	app.Run(iris.Addr(fmt.Sprintf("%s:%d", config.Server.Addr, config.Server.Port)), iris.WithCharset(config.Server.CharSet))
 }
@@ -31,8 +31,7 @@ type ContextHolder struct {
 	Config          *AppConfig
 }
 
-
-func setCtxHolder(app *iris.Application,config *AppConfig) {
+func setCtxHolder(app *iris.Application, config *AppConfig) {
 	ctxHolder = &ContextHolder{}
 	ctxHolder.Config = config
 	ctxHolder.Database = db

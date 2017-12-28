@@ -72,5 +72,5 @@ func main() {
 	flag.Parse()
 	application := iris.New()
 	initRoute(application)
-	app.Run(application, cfgPath)
+	app.ConfigAndStart(application, cfgPath)
 }
