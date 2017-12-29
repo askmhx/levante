@@ -1,7 +1,5 @@
 package model
 
-
-
 type WpPost struct {
 	Date string
 	DateGmt string
