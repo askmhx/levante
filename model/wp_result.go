@@ -19,8 +19,8 @@ type WpPost struct {
 	Author int
 	Excerpt string `json,format:'rendered:%s;protected:false'`
 	FeaturedMedia int
-	CommentStatus string
-	PingStatus string
+	CommentStatus string `json,default:'open'`
+	PingStatus string `json,default:'open'`
 	Format string
 	Meta []string
 	Sticky bool
