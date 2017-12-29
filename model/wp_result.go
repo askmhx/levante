@@ -27,7 +27,6 @@ type WpPost struct {
 	Template string
 	Categories []int
 	Tags []string
-	Links string `json,name:'_links'`
 }
 
 type WpPostRevision struct {
@@ -92,7 +91,6 @@ type WpPage struct {
 	PingStatus string `json,default:'open'`
 	Template string `json,default:''`
 	Meta []string
-	Links string `json,name:'_links'`
 }
 
 type WpComment struct {
