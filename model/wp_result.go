@@ -74,14 +74,14 @@ type WpPage struct {
 	Id string
 	Date string
 	DateGmt string
-	Guid string `json,rendered:%s;`
+	Guid string `json,format:'rendered:%s'`
 	Modified string
 	ModifiedGmt string
 	Slug string
 	Status string
 	PostType string `json,name:type`
 	Link string
-	Title string `json,rendered:%s;`
+	Title string `json,format:'rendered:%s'`
 	Content string `json,rendered:%s;protected:false`
 	Excerpt string `json,rendered:%s;protected:false`
 	Author int
@@ -115,6 +115,45 @@ type WpComment struct {
 	Meta []string
 }
 
+type WpTaxonomy struct {
+	Capabilities []string
+	Description string
+	Hierarchical bool
+	Labels []string
+	Name string
+	Slug string
+	ShowCloud bool
+	Types []string
+	RestBase string
+}
+
+type WpMedia struct {
+	Date string
+	Date_gmt string
+	Guid string `json,format:'rendered:%s'`
+	Id int
+	Link string
+	Modified string
+	ModifiedGmt string
+	Slug string
+	Status string
+	AltType string  `json,name:type`
+	Title string `json,format:'rendered:%s'`
+	Author int
+	CommentStatus string
+	PingStatus string
+	Meta []string
+	Template string
+	AltText string
+	Caption string `json,format:'rendered:%s'`
+	Description string `json,format:'rendered:%s'`
+	MediaType string
+	MimeType string
+	MediaDetails []string
+	Post int
+	SourceUrl string
+}
+
 type WpUser struct {
 	Id int
 	Username string
@@ -135,5 +174,43 @@ type WpUser struct {
 	ExtraCapabilities []string
 	AvatarUrls []string
 	Meta []string
+}
+
+type WpPostType struct {
+	Capabilities []string
+	Description string
+	Hierarchical bool
+	Labels []string
+	Name string
+	Slug string
+	Supports []string
+	Taxonomies []string
+	RestBase string
+}
+
+type WpPostStatus struct {
+	Name string
+	Private bool
+	Protected bool
+	Public bool
+	Queryable bool
+	ShowInList bool
+	Slug string
+}
+
+type WpSetting struct {
+	Title string
+	Description string
+	Timezone string
+	DateFormat string
+	TimeFormat string
+	StartOfWeek int
+	Language string
+	UseSmilies bool
+	DefaultCategory int
+	DefaultPostFormat string
+	PostsPerPage int
+	DefaultPingStatus string
+	DefaultCommentStatus string
 }
 
