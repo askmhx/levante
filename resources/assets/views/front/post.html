@@ -2,40 +2,33 @@
 
     <h1 class="mt-4">{{ .post.Title }}</h1>
     <p class="lead">
-        by
         <a href="#">{{ .post.Author }}</a>
+        <span>发布于 {{ .post.CreatedAt.Format "1989-02-14 15:04:05" }}</span>
     </p>
-
     <hr>
-
-    <p>发布于 {{ .post.CreatedAt.Format "1989-02-14 15:04:05" }}</p>
-
-    <hr>
-
-    <p>
-        {{ .post.Content }}
-    </p>
-
+    {{ .post.Content }}<br/><br/>
     <div class="card">
-        <h5 class="card-header">评论:</h5>
         <div class="card-body">
+            <h5 class="card-header">评论
+                <div class="btn-group pull-right">
+                    <button type="button" class="btn btn-sm btn-outline-secondary">
+                        <span class="oi oi-thumb-up"></span> {{ .post.Support }}
+                    </button>
+                    <button type="button" class="btn btn-sm btn-outline-secondary">
+                        <span class="oi oi-thumb-down"></span> {{ .post.Oppose }}
+                    </button>
+                </div>
+            </h5>
             <form>
                 <div class="form-group">
-                    <textarea class="form-control" rows="3"></textarea>
+                    <div class="row">
+                        <div class="col-11"><textarea class="form-control" rows="1"></textarea></div>
+                        <div class="col-1">                <button type="submit" class="btn btn-sm btn-outline-primary">提交</button>
+                        </div>
+                    </div>
+
                 </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
             </form>
         </div>
     </div>
-
-    <div class="card">
-        <button type="button" class="btn btn-sm btn-outline-secondary">
-            <span class="oi oi-thumb-up"></span> {{ .post.Support }}
-        </button>
-        &nbsp; &nbsp;
-        <button type="button" class="btn btn-sm btn-outline-secondary">
-            <span class="oi oi-thumb-down"></span> {{ .post.Oppose }}
-        </button>
-    </div>
-
 </div>
