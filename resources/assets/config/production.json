@@ -1,6 +1,6 @@
 {
-  "home": "/opt/server/levante/",
-  "irisYML": "/opt/server/levante/assets/config/iris.yml",
+  "home": "/opt/server/levante/resources/",
+  "irisYML": "/opt/server/levante/resources/assets/config/iris.yml",
   "server": {
     "port": 8992,
     "addr": "127.0.0.1",
