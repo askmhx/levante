@@ -48,7 +48,7 @@ func (this *IndexCtrl) StartHandle(ctx *app.Context) {
 		Gtitle      string
 	}
 	var linkList []LinkData
-	var sql = "select l.id,l.url,l.title as title,l.image,l.description,l.owner,l.highlight ,g.title as gtitle from links l left join link_groups g on l.link_group_id = g.id order by g.sort,l.sort,,l.id";
+	var sql = "select l.id,l.url,l.title as title,l.image,l.description,l.owner,l.highlight ,g.title as gtitle from links l left join link_groups g on l.link_group_id = g.id order by g.sort,l.sort,l.id";
 	ctx.Database().Raw(sql).Scan(&linkList);
 
 	type LinkGroupEntry struct {
