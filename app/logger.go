@@ -27,8 +27,8 @@ func NewRequestLogger(config *AppConfig) (h context.Handler) {
 		Columns: true,
 	}
 	logFile := newLogFile(config)
-	c.LogFunc = func(now time.Time, latency time.Duration, status, ip, method, path string, message interface{}) {
-		output := logger.Columnize(now.Format("2006/01/02 - 15:04:05"), latency, status, ip, method, path, message)
+	c.LogFunc = func(now time.Time, latency time.Duration, status, ip, method, path string, message interface{},headMessage interface{}) {
+		output := logger.Columnize(now.Format("2006/01/02 - 15:04:05"), latency, status, ip, method, path, message,headMessage)
 		logFile.Write([]byte(output))
 	}
 	h = logger.New(c)
