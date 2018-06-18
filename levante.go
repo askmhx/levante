@@ -40,14 +40,15 @@ func registerErrorHandler(application *iris.Application) {
 }
 
 var (
-	Version   = "1.0.0"
-	BuildDate = time.Now()
+	AppBanner  = "Levante %s Date: %s Build: %s"
+	AppVersion = "1.0.0"
+	AppDate    = time.Now().Format("2006-01-02 15:04:05")
+	GoVersion  = fmt.Sprintf("%s %s/%s", runtime.Version(), runtime.GOOS, runtime.GOARCH)
 )
 
 func main() {
-	const title = `Levante Blog %s Date: %s Build: %s`
-	GoVersion := fmt.Sprintf("%s %s/%s", runtime.Version(), runtime.GOOS, runtime.GOARCH)
-	fmt.Printf(title, Version, BuildDate, GoVersion)
+
+	fmt.Println(fmt.Sprintf(AppBanner,AppVersion, AppDate, GoVersion))
 
 	var cfgPath string
 	flag.StringVar(&cfgPath, "cfg", "NOT SET", "app cfg path")
