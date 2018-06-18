@@ -1,12 +1,13 @@
 <div class="container">
-    <h2 class="mt-4">{{ .post.Title }}</h2>
-    <div class="lead">
+    <h3 class="mt-1">{{ .post.Title }}</h3>
+    <div class="lead mt-3">
         <a href="#">{{ .post.Author }}</a>
         <span>发布于 {{ .post.CreatedAt.Format "2006-01-02 15:04:05" }}</span>
-        <span class="pull-right">
+        <span class="float-right">
             <a class="text-secondary" href="javascript:thumbsClick(this,'{{ .post.OprBaseModel.ID }}','support')">
                 <span class="oi oi-thumb-up"></span>{{ .post.Support }}
             </a>
+            &nbsp;&nbsp;&nbsp;&nbsp;
             <a class="text-secondary" href="javascript:thumbsClick(this,'{{ .post.OprBaseModel.ID }}','oppose')">
                 <span class="oi oi-thumb-down"></span>{{ .post.Oppose }}
             </a>
@@ -14,32 +15,31 @@
     </div>
     <hr>
 {{ .post.Content }}
-    <br/>
-    <div class="well">
+    <div class="well mt-4">
         <form>
             <div class="form-group row">
-                <label for="commitContent" class="col-sm-2 col-form-label">评论<span
+                <label for="commitContent" class="col-sm-12 col-form-label">评论<span
                         style="color: #ff0000;font-weight: bold">*</span></label>
                 <div class="col-sm-12">
                     <textarea id="commitContent" class="form-control" placeholder="说几句？" rows="1"></textarea>
                 </div>
             </div>
             <div class="form-group row">
-                <label for="commitName" class="col-sm-2 col-form-label">名字<span
+                <label for="commitName" class="col-sm-12 col-form-label">名字<span
                         style="color: #ff0000;font-weight: bold">*</span></label>
                 <div class="col-sm-12">
                     <input type="text" class="form-control" id="commitName" placeholder="请留下您的大名">
                 </div>
             </div>
             <div class="form-group row">
-                <label for="commitEmail" class="col-sm-2 col-form-label">邮箱<span
+                <label for="commitEmail" class="col-sm-12 col-form-label">邮箱<span
                         style="color: #ff0000;font-weight: bold">*</span></label>
                 <div class="col-sm-12">
                     <input type="text" class="form-control" id="commitEmail" placeholder="请留下您的邮箱">
                 </div>
             </div>
             <div class="form-group row">
-                <label for="commitSite" class="col-sm-2 col-form-label">网址</label>
+                <label for="commitSite" class="col-sm-12 col-form-label">网址</label>
                 <div class="col-sm-12">
                     <input type="text" class="form-control" id="commitSite" placeholder="请留下您的网址">
                 </div>
