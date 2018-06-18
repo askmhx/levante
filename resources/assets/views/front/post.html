@@ -1,34 +1,54 @@
 <div class="container">
-
-    <h1 class="mt-4">{{ .post.Title }}</h1>
-    <p class="lead">
+    <h2 class="mt-4">{{ .post.Title }}</h2>
+    <div class="lead">
         <a href="#">{{ .post.Author }}</a>
-        <span>发布于 {{ .post.CreatedAt.Format "1989-02-14 15:04:05" }}</span>
-    </p>
+        <span>发布于 {{ .post.CreatedAt.Format "2006-01-02 15:04:05" }}</span>
+        <span class="pull-right">
+            <a class="text-secondary" href="javascript:thumbsClick(this,'{{ .post.OprBaseModel.ID }}','support')">
+                <span class="oi oi-thumb-up"></span>{{ .post.Support }}
+            </a>
+            <a class="text-secondary" href="javascript:thumbsClick(this,'{{ .post.OprBaseModel.ID }}','oppose')">
+                <span class="oi oi-thumb-down"></span>{{ .post.Oppose }}
+            </a>
+        </span>
+    </div>
     <hr>
-    {{ .post.Content }}<br/><br/>
-    <div class="card">
-        <div class="card-body">
-            <h5 class="card-header">评论
-                <div class="btn-group pull-right">
-                    <button type="button" class="btn btn-sm btn-outline-secondary">
-                        <span class="oi oi-thumb-up"></span> {{ .post.Support }}
-                    </button>
-                    <button type="button" class="btn btn-sm btn-outline-secondary">
-                        <span class="oi oi-thumb-down"></span> {{ .post.Oppose }}
-                    </button>
+{{ .post.Content }}
+    <br/>
+    <div class="well">
+        <form>
+            <div class="form-group row">
+                <label for="commitContent" class="col-sm-2 col-form-label">评论<span
+                        style="color: #ff0000;font-weight: bold">*</span></label>
+                <div class="col-sm-12">
+                    <textarea id="commitContent" class="form-control" placeholder="说几句？" rows="1"></textarea>
                 </div>
-            </h5>
-            <form>
-                <div class="form-group">
-                    <div class="row">
-                        <div class="col-11"><textarea class="form-control" rows="1"></textarea></div>
-                        <div class="col-1">                <button type="submit" class="btn btn-sm btn-outline-primary">提交</button>
-                        </div>
-                    </div>
-
+            </div>
+            <div class="form-group row">
+                <label for="commitName" class="col-sm-2 col-form-label">名字<span
+                        style="color: #ff0000;font-weight: bold">*</span></label>
+                <div class="col-sm-12">
+                    <input type="text" class="form-control" id="commitName" placeholder="请留下您的大名">
                 </div>
-            </form>
-        </div>
+            </div>
+            <div class="form-group row">
+                <label for="commitEmail" class="col-sm-2 col-form-label">邮箱<span
+                        style="color: #ff0000;font-weight: bold">*</span></label>
+                <div class="col-sm-12">
+                    <input type="text" class="form-control" id="commitEmail" placeholder="请留下您的邮箱">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="commitSite" class="col-sm-2 col-form-label">网址</label>
+                <div class="col-sm-12">
+                    <input type="text" class="form-control" id="commitSite" placeholder="请留下您的网址">
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-12">
+                    <button type="submit" class="btn btn-primary">提交</button>
+                </div>
+            </div>
+        </form>
     </div>
 </div>
