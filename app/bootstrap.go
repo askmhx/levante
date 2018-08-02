@@ -8,6 +8,8 @@ import (
 	"os"
 	"github.com/kataras/iris/sessions"
 	"github.com/jinzhu/gorm"
+	"html/template"
+	"gopkg.in/russross/blackfriday.v2"
 )
 
 //执行顺序依次如下
@@ -71,5 +73,11 @@ func setWebView(app *iris.Application, config *AppConfig) {
 		panic("templatePath :" + templatePath + " is not exist!")
 	}
 	app.StaticWeb(config.View.Static.URI, staticPath)
-	app.RegisterView(view.HTML(templatePath, config.View.Template.Ext).Layout(config.View.Template.Layout).Reload(config.View.Template.Reload))
+	templateView := view.HTML(templatePath, config.View.Template.Ext).Layout(config.View.Template.Layout).Reload(config.View.Template.Reload)
+	templateView.AddFunc("markdown",func(arg string) template.HTML {
+			buf := blackfriday.Run([]byte(arg))
+			return template.HTML(buf)
+	})
+	app.RegisterView(templateView)
 }
+

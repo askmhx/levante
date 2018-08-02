@@ -14,7 +14,9 @@
         </span>
     </div>
     <hr>
-{{ .post.Content }}
+    <div class="row col-sm-12">
+        {{ .post.Content | markdown }}
+    </div>
     <div class="well mt-4">
         <form>
             <div class="form-group row">
