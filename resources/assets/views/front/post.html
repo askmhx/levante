@@ -15,7 +15,9 @@
     </div>
     <hr>
     <div class="row col-sm-12">
-        {{ .post.Content | markdown }}
+        <article>
+            {{ .post.Content | markdown }}
+        </article>
     </div>
     <div class="well mt-4">
         <form>
