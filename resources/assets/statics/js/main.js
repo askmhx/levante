@@ -6,4 +6,6 @@ $(function () {
     } else {
         $("#nav_item_index").addClass("active");
     }
+    //custom copyrightText
+    $("#footerCopyrightText").html("&copy; BLOG.IOSXC.COM &middot; "+new Date().getFullYear());
 });
