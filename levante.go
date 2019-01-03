@@ -11,17 +11,19 @@ import (
 )
 
 const url_index = "/"
+const url_favicon = "/favicon.ico"
 const url_start = "/start"
 const url_archive = "/archive"
 const url_about = "/about"
 const url_photo = "/photo"
 const url_post = "/post/{pid:int}"
 
-func initRoute(application *iris.Application) {
+func initRoute(application *iris.Application,config *app.AppConfig) {
 	registerErrorHandler(application)
 	indexCtrl := ctrl.IndexCtrl{}
 	photoCtrl := ctrl.PhotoCtrl{}
 	postCtrl := ctrl.PostCtrl{}
+
 	application.Get(url_index, app.Handler(indexCtrl.IndexHandle))
 	application.Get(url_start, app.Handler(indexCtrl.StartHandle))
 	application.Get(url_archive, app.Handler(indexCtrl.ArchiveHandle))
@@ -47,13 +49,12 @@ var (
 )
 
 func main() {
-
 	fmt.Println(fmt.Sprintf(AppBanner,AppVersion, AppDate, GoVersion))
-
 	var cfgPath string
 	flag.StringVar(&cfgPath, "cfg", "NOT SET", "app cfg path")
 	flag.Parse()
 	application := iris.New()
-	initRoute(application)
-	app.ConfigAndStart(application, cfgPath)
+	var config = app.InitConfig(application,cfgPath)
+	initRoute(application,config)
+	app.Launch(application, config)
 }

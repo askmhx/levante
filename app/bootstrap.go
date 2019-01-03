@@ -15,8 +15,8 @@ import (
 //执行顺序依次如下
 //config ->home ->logger -> db -> owner -> web -> run
 
-func ConfigAndStart(app *iris.Application, cfgFile string) {
-	config := initConfig(app, cfgFile)
+
+func Launch(app *iris.Application, config *AppConfig) {
 	setHome(app, config)
 	setLogger(app, config)
 	setDatabase(app, config)

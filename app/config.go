@@ -45,7 +45,7 @@ type AppConfig struct {
 
 var config *AppConfig
 
-func initConfig(app *iris.Application, configPath string) *AppConfig {
+func InitConfig(app *iris.Application, configPath string) *AppConfig {
 	configFile, err := os.Open(configPath)
 	defer configFile.Close()
 	if err != nil {
