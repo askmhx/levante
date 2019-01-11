@@ -8,7 +8,7 @@ import (
 )
 
 type AppConfig struct {
-	Home string
+	Home    string
 	IrisYML string
 
 	Server struct {
@@ -40,6 +40,7 @@ type AppConfig struct {
 		RotateType  string
 		RotateValue string
 		RotateCount uint
+		Level       string
 	}
 }
 

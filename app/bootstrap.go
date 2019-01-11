@@ -2,22 +2,19 @@ package app
 
 import (
 	"fmt"
+	"github.com/jinzhu/gorm"
 	"github.com/kataras/iris"
+	"github.com/kataras/iris/sessions"
 	"github.com/kataras/iris/view"
+	"gopkg.in/russross/blackfriday.v2"
+	"html/template"
 	"iosxc.com/levante/util"
 	"os"
-	"github.com/kataras/iris/sessions"
-	"github.com/jinzhu/gorm"
-	"html/template"
-	"gopkg.in/russross/blackfriday.v2"
 )
 
-//执行顺序依次如下
-//config ->home ->logger -> db -> owner -> web -> run
-
+//logger -> db -> context -> web -> run
 
 func Launch(app *iris.Application, config *AppConfig) {
-	setHome(app, config)
 	setLogger(app, config)
 	setDatabase(app, config)
 	setCtxHolder(app, config)
@@ -40,12 +37,6 @@ func setCtxHolder(app *iris.Application, config *AppConfig) {
 	ctxHolder.SessionsManager = sessions.New(sessions.Config{Cookie: "mysessioncookie"})
 }
 
-func setHome(application *iris.Application, config *AppConfig) {
-	if !util.CheckIsExistPath(config.Home) {
-		panic("config.Home :" + config.Home + " is not exist!")
-	}
-}
-
 func setLogger(application *iris.Application, config *AppConfig) {
 	logPath := fmt.Sprintf("%s%s", config.Home, config.Log.File)
 	file, err := os.Open(logPath)
@@ -54,6 +45,7 @@ func setLogger(application *iris.Application, config *AppConfig) {
 	}
 	defer file.Close()
 	logger := NewRequestLogger(config)
+	application.Logger().SetLevel(config.Log.Level)
 	application.Use(logger)
 }
 

@@ -23,7 +23,7 @@ func initRoute(application *iris.Application,config *app.AppConfig) {
 	indexCtrl := ctrl.IndexCtrl{}
 	photoCtrl := ctrl.PhotoCtrl{}
 	postCtrl := ctrl.PostCtrl{}
-
+	application.Favicon(config.Home+"assets/statics/img/favicon.ico",url_favicon)
 	application.Get(url_index, app.Handler(indexCtrl.IndexHandle))
 	application.Get(url_start, app.Handler(indexCtrl.StartHandle))
 	application.Get(url_archive, app.Handler(indexCtrl.ArchiveHandle))
@@ -43,7 +43,7 @@ func registerErrorHandler(application *iris.Application) {
 
 var (
 	AppBanner  = "Levante %s Date: %s Build: %s"
-	AppVersion = "1.0.0"
+	AppVersion = "1.0.1"
 	AppDate    = time.Now().Format("2006-01-02 15:04:05")
 	GoVersion  = fmt.Sprintf("%s %s/%s", runtime.Version(), runtime.GOOS, runtime.GOARCH)
 )
