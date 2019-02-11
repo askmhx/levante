@@ -3,19 +3,19 @@ function subForm(tid) {
     var qFrom = document.getElementById("queryForm");
     switch (tid) {
         case 1:
-            qFrom.action = "http://www.google.com/search";
+            qFrom.action = "https://www.google.com/search";
             kw.name = "q";
             kw.setAttribute("name", "q");
             qFrom.submit();
             break;
         case 2:
-            qFrom.action = "http://www.baidu.com/baidu";
+            qFrom.action = "https://www.baidu.com/s";
             kw.name = "wd";
             kw.setAttribute("name", "wd");
             qFrom.submit();
             break;
         case 3:
-            qFrom.action = "http://wwww.bing.com/search";
+            qFrom.action = "https://cn.bing.com/search?ensearch=1";
             kw.name = "q";
             kw.setAttribute("name", "q");
             qFrom.submit();
