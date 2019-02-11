@@ -2,10 +2,10 @@ package main
 
 import (
 	"flag"
-	"iosxc.com/levante/app"
-	"github.com/kataras/iris"
-	"iosxc.com/levante/ctrl"
 	"fmt"
+	"github.com/kataras/iris"
+	"iosxc.com/levante/app"
+	"iosxc.com/levante/ctrl"
 	"runtime"
 	"time"
 )

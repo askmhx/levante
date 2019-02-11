@@ -28,6 +28,10 @@ type AppConfig struct {
 			Path string
 			URI  string
 		}
+		HTML struct {
+			Path string
+			URI  string
+		}
 		Template struct {
 			Layout string
 			Path   string

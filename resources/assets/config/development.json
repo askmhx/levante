@@ -18,6 +18,10 @@
       "path": "assets/statics/",
       "uri": "/statics"
     },
+    "html": {
+      "path": "assets/htmls/",
+      "uri": "/"
+    },
     "template": {
       "path": "assets/views/",
       "layout": "front/layout.html",

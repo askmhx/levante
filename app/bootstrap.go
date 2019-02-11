@@ -55,16 +55,22 @@ func setDatabase(app *iris.Application, config *AppConfig) {
 
 func setWebView(app *iris.Application, config *AppConfig) {
 	staticPath := fmt.Sprintf("%s%s", config.Home, config.View.Static.Path)
+	htmlPath := fmt.Sprintf("%s%s", config.Home, config.View.HTML.Path)
 	templatePath := fmt.Sprintf("%s%s", config.Home, config.View.Template.Path)
 
 	if !util.CheckIsExistPath(staticPath) {
 		panic("staticPath :" + staticPath + " is not exist!")
 	}
 
+	if !util.CheckIsExistPath(htmlPath) {
+		panic("htmlPath :" + htmlPath + " is not exist!")
+	}
+
 	if !util.CheckIsExistPath(templatePath) {
 		panic("templatePath :" + templatePath + " is not exist!")
 	}
 	app.StaticWeb(config.View.Static.URI, staticPath)
+	app.StaticWeb(config.View.HTML.URI, htmlPath)
 	templateView := view.HTML(templatePath, config.View.Template.Ext).Layout(config.View.Template.Layout).Reload(config.View.Template.Reload)
 	templateView.AddFunc("markdown",func(arg string) template.HTML {
 			buf := blackfriday.Run([]byte(arg))
