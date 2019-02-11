@@ -8,7 +8,7 @@
   },
   "database": {
     "user": "levante",
-    "password": "maserati",
+    "password": "******",
     "host": "127.0.0.1",
     "port": 3306,
     "schema": "levante"
@@ -17,6 +17,10 @@
     "static": {
       "path": "assets/statics/",
       "uri": "/statics"
+    },
+    "html": {
+      "path": "assets/htmls/",
+      "uri": "/"
     },
     "template": {
       "path": "assets/views/",
