@@ -12,7 +12,7 @@ import (
 
 var db *gorm.DB
 
-func initDatabase(config *AppConfig) *gorm.DB{
+func InitDatabase(config *AppConfig) *gorm.DB{
 	var err error
 	dbConnURL := fmt.Sprintf("%s:%s@tcp(%s:%d)/%s?charset=utf8&parseTime=True&loc=Local", config.Database.User, config.Database.Password, config.Database.Host, config.Database.Port, config.Database.Schema)
 	db, err = gorm.Open("mysql", dbConnURL)

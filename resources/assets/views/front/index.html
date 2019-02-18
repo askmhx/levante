@@ -24,7 +24,7 @@
         {{ end }}
 
         {{ if gt (len .postList) 4 }}
-            <a class="btn btn-default center-block" href="/archive/"> 查看存档文章 ...</a>
+            <a class="btn btn-default center-block" href="/post"> 查看存档文章 ...</a>
         {{ end }}
         </div>
         <div class="col-4">
@@ -35,7 +35,7 @@
                 <div class="card-body border-light">
                     <ul class="list-unstyled">
                     {{ range $index , $mc := .monthList }}
-                        <li><a class="text-muted" href="/archive/{{$mc.ColName}}">{{$mc.ColName}} ({{$mc.Count}})</a></li>
+                        <li><a class="text-muted" href="/post/month/{{$mc.ColName}}">{{$mc.ColName}} ({{$mc.Count}})</a></li>
                     {{ end }}
                     </ul>
                 </div>
@@ -47,7 +47,7 @@
                 <div class="card-body border-light">
                     <ul class="list-unstyled">
                         {{ range $index , $kc := .tagList }}
-                            <li><a class="text-muted" href="/catalog/{{$kc.ColName}}">{{$kc.ColName}} ({{$kc.Count}})</a></li>
+                            <li><a class="text-muted" href="/post/catalog/{{$kc.ColName}}">{{$kc.ColName}} ({{$kc.Count}})</a></li>
                         {{ end }}
                     </ul>
                 </div>

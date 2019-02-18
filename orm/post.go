@@ -3,8 +3,10 @@ package orm
 type Post struct {
 	OprBaseModel
 	Title         string `gorm:"primary_key"`
-	Content       string
 	Author        string
+	Content       string
+	Description   string
+	KeyWords      string
 	Support       uint64
 	Oppose        uint64
 	Views         uint64
@@ -13,5 +15,5 @@ type Post struct {
 	PermanentURL  string
 	PostType      string
 	SourceLink    string
-	Catalog string
+	Catalog       string
 }

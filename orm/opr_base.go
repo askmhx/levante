@@ -3,7 +3,7 @@ package orm
 import "time"
 
 type OprBaseModel struct {
-	ID        uint `gorm:"primary_key;AUTO_INCREMENT"`
+	ID        uint64 `gorm:"primary_key;AUTO_INCREMENT"`
 	CreatedAt time.Time
 	CreatedBy string
 	UpdatedBy string
