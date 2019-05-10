@@ -14,15 +14,15 @@
     "schema": "levante"
   },
   "view": {
-    "static": {
+    "statics": {
       "path": "assets/statics/",
       "uri": "/statics"
     },
-    "html": {
+    "htmls": {
       "path": "assets/htmls/",
       "uri": "/"
     },
-    "template": {
+    "templates": {
       "path": "assets/views/",
       "layout": "front/layout.html",
       "ext": ".html",
@@ -33,7 +33,7 @@
     "file": "logs/levante.log",
     "rotateType": "TIME",
     "rotateValue": "60*60*24",
-    "rotateCount": "7",
+    "rotateCount": 7,
     "level": "debug"
   }
 }

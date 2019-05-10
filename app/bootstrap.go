@@ -38,9 +38,9 @@ func setLogger(application *iris.Application, config *AppConfig) {
 
 
 func setWebView(app *iris.Application, config *AppConfig) {
-	staticPath := fmt.Sprintf("%s%s", config.Home, config.View.Static.Path)
-	htmlPath := fmt.Sprintf("%s%s", config.Home, config.View.HTML.Path)
-	templatePath := fmt.Sprintf("%s%s", config.Home, config.View.Template.Path)
+	staticPath := fmt.Sprintf("%s%s", config.Home, config.View.Statics.Path)
+	htmlPath := fmt.Sprintf("%s%s", config.Home, config.View.Htmls.Path)
+	templatePath := fmt.Sprintf("%s%s", config.Home, config.View.Templates.Path)
 
 	if !util.CheckIsExistPath(staticPath) {
 		panic("staticPath :" + staticPath + " is not exist!")
@@ -53,9 +53,9 @@ func setWebView(app *iris.Application, config *AppConfig) {
 	if !util.CheckIsExistPath(templatePath) {
 		panic("templatePath :" + templatePath + " is not exist!")
 	}
-	app.StaticWeb(config.View.Static.URI, staticPath)
-	app.StaticWeb(config.View.HTML.URI, htmlPath)
-	templateView := iris.HTML(templatePath, config.View.Template.Ext).Layout(config.View.Template.Layout).Reload(config.View.Template.Reload)
+	app.StaticWeb(config.View.Statics.URI, staticPath)
+	app.StaticWeb(config.View.Htmls.URI, htmlPath)
+	templateView := iris.HTML(templatePath, config.View.Templates.Ext).Layout(config.View.Templates.Layout).Reload(config.View.Templates.Reload)
 	templateView.AddFunc("markdown",func(arg string) template.HTML {
 			buf := blackfriday.Run([]byte(arg))
 			return template.HTML(buf)

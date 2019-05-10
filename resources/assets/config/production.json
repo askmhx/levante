@@ -14,15 +14,15 @@
     "schema": "levante"
   },
   "view": {
-    "static": {
+    "statics": {
       "path": "assets/statics/",
       "uri": "/statics"
     },
-    "html": {
+    "htmls": {
       "path": "assets/htmls/",
       "uri": "/"
     },
-    "template": {
+    "templates": {
       "path": "assets/views/",
       "layout": "front/layout.html",
       "ext": ".html",

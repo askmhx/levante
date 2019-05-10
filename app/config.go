@@ -24,15 +24,15 @@ type AppConfig struct {
 		Port     uint
 	}
 	View struct {
-		Static struct {
+		Statics struct {
 			Path string
 			URI  string
 		}
-		HTML struct {
+		Htmls struct {
 			Path string
 			URI  string
 		}
-		Template struct {
+		Templates struct {
 			Layout string
 			Path   string
 			Ext    string
