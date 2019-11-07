@@ -2,11 +2,12 @@ package app
 
 import (
 	"fmt"
-	"github.com/kataras/iris"
-	"gopkg.in/russross/blackfriday.v2"
 	"html/template"
-	"iosxc.com/levante/util"
 	"os"
+
+	"github.com/kataras/iris/v12"
+	"gopkg.in/russross/blackfriday.v2"
+	"iosxc.com/levante/util"
 )
 
 //logger -> db -> context -> web -> run
@@ -36,7 +37,6 @@ func setLogger(application *iris.Application, config *AppConfig) {
 	application.Use(logger)
 }
 
-
 func setWebView(app *iris.Application, config *AppConfig) {
 	staticPath := fmt.Sprintf("%s%s", config.Home, config.View.Static.Path)
 	htmlPath := fmt.Sprintf("%s%s", config.Home, config.View.HTML.Path)
@@ -53,13 +53,12 @@ func setWebView(app *iris.Application, config *AppConfig) {
 	if !util.CheckIsExistPath(templatePath) {
 		panic("templatePath :" + templatePath + " is not exist!")
 	}
-	app.StaticWeb(config.View.Static.URI, staticPath)
-	app.StaticWeb(config.View.HTML.URI, htmlPath)
+	app.HandleDir(config.View.Static.URI, staticPath)
+	app.HandleDir(config.View.HTML.URI, htmlPath)
 	templateView := iris.HTML(templatePath, config.View.Template.Ext).Layout(config.View.Template.Layout).Reload(config.View.Template.Reload)
-	templateView.AddFunc("markdown",func(arg string) template.HTML {
-			buf := blackfriday.Run([]byte(arg))
-			return template.HTML(buf)
+	templateView.AddFunc("markdown", func(arg string) template.HTML {
+		buf := blackfriday.Run([]byte(arg))
+		return template.HTML(buf)
 	})
 	app.RegisterView(templateView)
 }
-
