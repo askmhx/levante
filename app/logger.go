@@ -3,8 +3,8 @@ package app
 import (
 	"time"
 	"os"
-	"github.com/kataras/iris/middleware/logger"
-	"github.com/kataras/iris/context"
+	"github.com/kataras/iris/v12/middleware/logger"
+	"github.com/kataras/iris/v12/context"
 	"fmt"
 )
 
