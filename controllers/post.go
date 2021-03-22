@@ -1,9 +1,9 @@
 package controllers
 
 import (
-	"github.com/kataras/iris/mvc"
-	"iosxc.com/levante/services"
-	"iosxc.com/levante/util"
+	"github.com/kataras/iris/v12/mvc"
+	"levante/services"
+	"levante/util"
 )
 
 type PostController struct {

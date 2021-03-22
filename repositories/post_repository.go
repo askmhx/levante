@@ -2,8 +2,8 @@ package repositories
 
 import (
 	"github.com/jinzhu/gorm"
-	"iosxc.com/levante/model"
-	"iosxc.com/levante/orm"
+	"levante/model"
+	"levante/orm"
 )
 
 type PostRepository interface {

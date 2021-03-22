@@ -2,9 +2,9 @@ package services
 
 import (
 	"fmt"
-	"iosxc.com/levante/model"
-	"iosxc.com/levante/orm"
-	"iosxc.com/levante/repositories"
+	"levante/model"
+	"levante/orm"
+	"levante/repositories"
 	"reflect"
 )
 

@@ -1,0 +1,5 @@
+<script charset="gbk" src="/statics/js/marked.min.js"></script>
+<script>
+    document.getElementById('post_content').innerHTML =
+        marked('{{ .post.Content  }}');
+</script>

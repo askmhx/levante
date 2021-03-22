@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/mysql"
-	"iosxc.com/levante/orm"
-	"iosxc.com/levante/util"
+	"levante/orm"
+	"levante/util"
 	"log"
 	"os"
 )
@@ -30,7 +30,7 @@ func InitDatabase(config *AppConfig) *gorm.DB{
 }
 
 func setDBLogger(config *AppConfig) {
-	logPath := fmt.Sprintf("%s%s", config.Home, config.Log.File)
+	logPath := fmt.Sprintf("%s%s", config.Home, config.ApplicationLog.File)
 	if !util.CheckIsExistPath(logPath) {
 		panic("logPath:" + logPath + " is not exist! bootstrap.go must execute setLogger() before setDatabase()")
 	}

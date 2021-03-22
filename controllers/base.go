@@ -1,9 +1,9 @@
 package controllers
 
 import (
-	"github.com/kataras/iris"
-	"github.com/kataras/iris/mvc"
-	"iosxc.com/levante/model"
+	"github.com/kataras/iris/v12"
+	"github.com/kataras/iris/v12/mvc"
+	"levante/model"
 )
 
 type BaseController struct {

@@ -2,16 +2,16 @@ package app
 
 import (
 	"fmt"
-	"github.com/kataras/iris"
-	"gopkg.in/russross/blackfriday.v2"
-	"html/template"
-	"iosxc.com/levante/util"
+	"github.com/kataras/iris/v12"
+	"github.com/kataras/iris/v12/middleware/accesslog"
+	"levante/util"
 	"os"
 )
 
 //logger -> db -> context -> web -> run
 func Launch(app *iris.Application, config *AppConfig) {
-	setLogger(app, config)
+	setApplicationLogger(app, config)
+	setRequestLogger(app, config)
 	setWebView(app, config)
 	registerErrorHandler(app)
 	app.Run(iris.Addr(fmt.Sprintf("%s:%d", config.Server.Addr, config.Server.Port)), iris.WithCharset(config.Server.CharSet))
@@ -24,17 +24,42 @@ func registerErrorHandler(application *iris.Application) {
 	})
 }
 
-func setLogger(application *iris.Application, config *AppConfig) {
-	logPath := fmt.Sprintf("%s%s", config.Home, config.Log.File)
+func setApplicationLogger(application *iris.Application, config *AppConfig) {
+	logPath := fmt.Sprintf("%s%s", config.Home, config.ApplicationLog.File)
 	file, err := os.Open(logPath)
 	if err != nil {
 		file, _ = os.Create(logPath)
 	}
 	defer file.Close()
-	logger := NewRequestLogger(config)
-	application.Logger().SetLevel(config.Log.Level)
-	application.Use(logger)
+	application.Logger().SetLevel(config.ApplicationLog.Level)
+	application.Logger().SetOutput(file)
 }
+
+func setRequestLogger(application *iris.Application, config *AppConfig) {
+	logPath := fmt.Sprintf("%s%s", config.Home, config.AccessLog.File)
+	ac := accesslog.File(logPath)
+	ac.AddOutput(os.Stdout)
+	ac.Delim = '|'
+	ac.TimeFormat = "2006-01-02 15:04:05"
+	ac.Async = false
+	ac.IP = true
+	ac.BytesReceivedBody = true
+	ac.BytesSentBody = true
+	ac.BytesReceived = false
+	ac.BytesSent = false
+	ac.BodyMinify = true
+	ac.RequestBody = true
+	ac.ResponseBody = false
+	ac.KeepMultiLineError = true
+	ac.PanicLog = accesslog.LogHandler
+	ac.SetFormatter(&accesslog.JSON{
+		Indent:    "  ",
+		HumanTime: true,
+	})
+	application.UseRouter(ac.Handler)
+	defer ac.Close()
+}
+
 
 
 func setWebView(app *iris.Application, config *AppConfig) {
@@ -53,13 +78,9 @@ func setWebView(app *iris.Application, config *AppConfig) {
 	if !util.CheckIsExistPath(templatePath) {
 		panic("templatePath :" + templatePath + " is not exist!")
 	}
-	app.StaticWeb(config.View.Statics.URI, staticPath)
-	app.StaticWeb(config.View.Htmls.URI, htmlPath)
+	app.HandleDir(config.View.Statics.URI, staticPath)
+	app.HandleDir(config.View.Htmls.URI, htmlPath)
 	templateView := iris.HTML(templatePath, config.View.Templates.Ext).Layout(config.View.Templates.Layout).Reload(config.View.Templates.Reload)
-	templateView.AddFunc("markdown",func(arg string) template.HTML {
-			buf := blackfriday.Run([]byte(arg))
-			return template.HTML(buf)
-	})
 	app.RegisterView(templateView)
 }
 

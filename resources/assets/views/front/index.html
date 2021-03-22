@@ -2,23 +2,10 @@
     <div class="row">
         <div class="col-8">
         {{ range $index , $cblog := .postList }}
-            <div class="card mb-4 border-light">
+            <div class="card mb-1 border-light">
                 <div class="card-body">
-                    <h2 class="card-title"><a class="text-dark h3" href='/post/{{ $cblog.OprBaseModel.ID }}'>{{ $cblog.Title }}</a></h2>
-
-                    <p class="card-text">{{ printf "%.200s" $cblog.Content }} ...</p>
-                </div>
-                <div class="card-footer text-muted bg-transparent border-light font-weight-light">
-                    <a class="text-secondary"
-                       href="javascript:thumbsClick(this,'{{ $cblog.OprBaseModel.ID }}','support')">
-                        <span class="oi oi-thumb-up"></span> <span>{{ $cblog.Support }}</span>
-                    </a>
-                    <a class="text-secondary "
-                       href="javascript:thumbsClick(this,'{{ $cblog.OprBaseModel.ID }}','oppose')">
-                        <span class="oi oi-thumb-down"></span> <span>{{ $cblog.Oppose }}</span>
-                    </a>
-                    <a class="text-muted" href="/user/{{ $cblog.Author }}">{{ $cblog.Author }} </a>
-                    发表于 {{ $cblog.CreatedAt.Format "2006-01-02 15:04:05" }}
+                    <h2 class="card-title"> {{ $cblog.CreatedAt.Format "2006-01-02" }} <a class="text-dark h4" href='/post/{{ $cblog.OprBaseModel.ID }}'>{{ $cblog.Title }}</a></h2>
+{{/*                    <p class="card-text">{{ printf "%.200s" $cblog.Content }} ...</p>*/}}
                 </div>
             </div>
         {{ end }}

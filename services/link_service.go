@@ -1,8 +1,8 @@
 package services
 
 import (
-	"iosxc.com/levante/model"
-	"iosxc.com/levante/repositories"
+	"levante/model"
+	"levante/repositories"
 )
 
 type LinkService interface {

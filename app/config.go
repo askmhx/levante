@@ -3,7 +3,7 @@ package app
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/kataras/iris"
+	"github.com/kataras/iris/v12"
 	"os"
 )
 
@@ -39,7 +39,14 @@ type AppConfig struct {
 			Reload bool
 		}
 	}
-	Log struct {
+	ApplicationLog struct {
+		File        string
+		RotateType  string
+		RotateValue string
+		RotateCount uint
+		Level       string
+	}
+	AccessLog struct {
 		File        string
 		RotateType  string
 		RotateValue string

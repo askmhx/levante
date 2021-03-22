@@ -2,8 +2,8 @@ package controllers
 
 import (
 	"bytes"
-	"github.com/kataras/iris"
-	"iosxc.com/levante/services"
+	"github.com/kataras/iris/v12"
+	"levante/services"
 	"text/template"
 )
 

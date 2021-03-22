@@ -1,8 +1,8 @@
 package controllers
 
 import (
-	"github.com/kataras/iris/mvc"
-	"iosxc.com/levante/services"
+	"github.com/kataras/iris/v12/mvc"
+	"levante/services"
 )
 
 type AboutController struct {

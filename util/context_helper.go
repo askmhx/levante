@@ -1,12 +1,12 @@
 package util
 
 import (
-	"github.com/kataras/iris/context"
-	"iosxc.com/levante/model"
+	"github.com/kataras/iris/v12"
+	"levante/model"
 	"strconv"
 )
 
-func GetPage(context context.Context) model.Page {
+func GetPage(context iris.Context) model.Page {
 	page := model.Page{}
 	var err error
 	page.PageIndex, err = strconv.ParseUint(context.Params().Get(CONST_PARAM_PAGE_INDEX), 10, 64)

@@ -3,8 +3,8 @@ package main
 import (
 	"flag"
 	"fmt"
-	"github.com/kataras/iris"
-	"iosxc.com/levante/app"
+	"github.com/kataras/iris/v12"
+	"levante/app"
 	"runtime"
 	"time"
 )
