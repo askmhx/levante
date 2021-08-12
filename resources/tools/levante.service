@@ -1,10 +1,10 @@
 [Unit]
 Description=LEVANTE SERVER
-After=network.target mariadb.service
+After=network.target mysqld.service
 
 [Service]
 Type=simple
-ExecStart=/opt/server/levante/bin/levante -cfg /opt/server/levante/resources/assets/config/production.json
+ExecStart=/opt/server/levante/levante -cfg /opt/server/levante/config.json
 
 [Install]
 WantedBy=multi-user.target
