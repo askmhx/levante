@@ -1,6 +1,6 @@
 {
-  "home": "/Users/Crazz/WorkSpace/GLWork/iosxc.com/levante/resources/",
-  "irisYML": "/Users/Crazz/WorkSpace/GLWork/iosxc.com/levante/resources/assets/config/iris.yml",
+  "home": "/Users/AskMHX/WorkSpace/GLWork/levante/resources/",
+  "irisYML": "/Users/AskMHX/WorkSpace/GLWork/levante/resources/iris.yml",
   "server": {
     "port": 8992,
     "addr": "0.0.0.0",
@@ -8,7 +8,7 @@
   },
   "database": {
     "user": "root",
-    "password": "maserati",
+    "password": "adbcd11111",
     "host": "127.0.0.1",
     "port": 3306,
     "schema": "levante"
