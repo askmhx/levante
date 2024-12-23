@@ -4,7 +4,7 @@ After=network.target mysqld.service
 
 [Service]
 Type=simple
-ExecStart=/opt/server/levante/levante -cfg /opt/server/levante/config.json
+ExecStart=/opt/app/levante/levante -cfg /opt/app/levante/config.json
 
 [Install]
 WantedBy=multi-user.target
