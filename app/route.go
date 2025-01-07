@@ -34,7 +34,7 @@ func InitRoute(application *iris.Application, config *AppConfig, database *gorm.
 	postRepository := repositories.NewPostRepository(database)
 	linkRepository := repositories.NewLinkRepository(database)
 
-	postService := services.NewPostService(postRepository,cacheRepository)
+	postService := services.NewPostService(postRepository, cacheRepository)
 	linkService := services.NewLinkService(linkRepository)
 
 	indexMvc := mvc.New(application.Party(url_index))
@@ -48,7 +48,6 @@ func InitRoute(application *iris.Application, config *AppConfig, database *gorm.
 	startMvc := mvc.New(application.Party(url_start))
 	startMvc.Register(linkService)
 	startMvc.Handle(startCtrl)
-
 
 	commentMvc := mvc.New(application.Party(url_comment))
 	commentMvc.Handle(commentCtrl)

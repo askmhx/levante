@@ -8,19 +8,25 @@ import (
 	"os"
 )
 
-//logger -> db -> context -> web -> run
+// logger -> db -> context -> web -> run
 func Launch(app *iris.Application, config *AppConfig) {
 	setApplicationLogger(app, config)
 	setRequestLogger(app, config)
 	setWebView(app, config)
 	registerErrorHandler(app)
-	app.Run(iris.Addr(fmt.Sprintf("%s:%d", config.Server.Addr, config.Server.Port)), iris.WithCharset(config.Server.CharSet))
+	err := app.Run(iris.Addr(fmt.Sprintf("%s:%d", config.Server.Addr, config.Server.Port)), iris.WithCharset(config.Server.CharSet))
+	if err != nil {
+		panic(err)
+	}
 }
 
 func registerErrorHandler(application *iris.Application) {
 	application.OnAnyErrorCode(func(ctx iris.Context) {
 		ctx.ViewData("Message", ctx.Values().GetStringDefault("message", "网页丢啦"))
-		ctx.View("front/error.html")
+		err := ctx.View("front/error.html")
+		if err != nil {
+			panic(err)
+		}
 	})
 }
 
@@ -60,8 +66,6 @@ func setRequestLogger(application *iris.Application, config *AppConfig) {
 	defer ac.Close()
 }
 
-
-
 func setWebView(app *iris.Application, config *AppConfig) {
 	staticPath := fmt.Sprintf("%s%s", config.Home, config.View.Statics.Path)
 	htmlPath := fmt.Sprintf("%s%s", config.Home, config.View.Htmls.Path)
@@ -83,4 +87,3 @@ func setWebView(app *iris.Application, config *AppConfig) {
 	templateView := iris.HTML(templatePath, config.View.Templates.Ext).Layout(config.View.Templates.Layout).Reload(config.View.Templates.Reload)
 	app.RegisterView(templateView)
 }
-
