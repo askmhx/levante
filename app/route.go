@@ -1,12 +1,13 @@
 package app
 
 import (
-	"github.com/jinzhu/gorm"
-	"github.com/kataras/iris/v12"
-	"github.com/kataras/iris/v12/mvc"
 	"levante/controllers"
 	"levante/repositories"
 	"levante/services"
+
+	"github.com/kataras/iris/v12"
+	"github.com/kataras/iris/v12/mvc"
+	"gorm.io/gorm"
 )
 
 const url_index = "/"

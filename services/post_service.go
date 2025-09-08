@@ -9,29 +9,28 @@ import (
 )
 
 const (
-	site_map_cache_key = "post_service_get_links_site_map_key"
-	site_map_cache_time = 60*60*24
+	site_map_cache_key  = "post_service_get_links_site_map_key"
+	site_map_cache_time = 60 * 60 * 24
 )
 
 type PostService interface {
 	GetByID(id uint64) (orm.Post, bool)
-	GetByCatalog(catalog string) ([]orm.Post , bool)
+	GetByCatalog(catalog string) ([]orm.Post, bool)
 	GetMonthList() []model.ColCount
 	GetTagList() []model.ColCount
-	GetList(start,limit uint64) []orm.Post
+	GetList(start, limit int) []orm.Post
 	GetLinks(host string) []model.SiteUrl
-
 }
 
-func NewPostService(repo repositories.PostRepository,cache repositories.MemCacheRepository) PostService {
+func NewPostService(repo repositories.PostRepository, cache repositories.MemCacheRepository) PostService {
 	return &postService{
-		repo: repo,
+		repo:  repo,
 		cache: cache,
 	}
 }
 
 type postService struct {
-	repo repositories.PostRepository
+	repo  repositories.PostRepository
 	cache repositories.MemCacheRepository
 }
 
@@ -44,22 +43,22 @@ func (s *postService) GetLinks(host string) []model.SiteUrl {
 	var posts = s.repo.QueryList(sql)
 	var links = []model.SiteUrl{}
 	timeFormat := "2006-01-02T15:04:05+07:00"
-	for _,post := range posts  {
-		links = append(links, model.SiteUrl{LastMod:post.UpdatedAt.Format(timeFormat),Loc:fmt.Sprintf("%s/post/%d",host,post.ID),Priority:8})
+	for _, post := range posts {
+		links = append(links, model.SiteUrl{LastMod: post.UpdatedAt.Format(timeFormat), Loc: fmt.Sprintf("%s/post/%d", host, post.ID), Priority: 8})
 	}
 	timeMax := posts[0].UpdatedAt.Format(timeFormat)
-	var homeURL = model.SiteUrl{Loc:host,LastMod:timeMax,Priority:10}
-	var aboutURL = model.SiteUrl{Loc:host+"/about",LastMod:timeMax,Priority:9}
-	var startURL = model.SiteUrl{Loc:host+"/start",LastMod:timeMax,Priority:9}
-	links = append(links,homeURL)
-	links = append(links,aboutURL)
-	links = append(links,startURL)
-	_ = s.cache.Set(site_map_cache_key,links,site_map_cache_time)
+	var homeURL = model.SiteUrl{Loc: host, LastMod: timeMax, Priority: 10}
+	var aboutURL = model.SiteUrl{Loc: host + "/about", LastMod: timeMax, Priority: 9}
+	var startURL = model.SiteUrl{Loc: host + "/start", LastMod: timeMax, Priority: 9}
+	links = append(links, homeURL)
+	links = append(links, aboutURL)
+	links = append(links, startURL)
+	_ = s.cache.Set(site_map_cache_key, links, site_map_cache_time)
 	return links
 }
 
-func (s *postService) GetList(start,limit uint64) []orm.Post {
-	return s.repo.SelectMany(start,limit)
+func (s *postService) GetList(start, limit int) []orm.Post {
+	return s.repo.SelectMany(start, limit)
 }
 
 func (s *postService) GetMonthList() []model.ColCount {

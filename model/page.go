@@ -1,14 +1,14 @@
 package model
 
 type Page struct {
-	PageIndex uint64
-	PageSize  uint64
+	PageIndex int
+	PageSize  int
 }
 
-func (this Page) Start() uint64 {
+func (this Page) Start() int {
 	return this.PageIndex * this.PageSize
 }
 
-func (this Page) End() uint64 {
+func (this Page) End() int {
 	return (this.PageIndex + 1) * this.PageSize
 }
